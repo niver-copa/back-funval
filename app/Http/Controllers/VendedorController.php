@@ -121,7 +121,7 @@ class VendedorController extends Controller
      * @param  \App\Models\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $num = $id;
         $borrarVendedor = Vendedor::find($id);
