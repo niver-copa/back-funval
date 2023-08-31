@@ -17,7 +17,8 @@ class VendedorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => fake()->name(),
+            'state' => "1",
         ];
     }
 }

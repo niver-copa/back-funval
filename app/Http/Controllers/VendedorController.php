@@ -35,48 +35,15 @@ class VendedorController extends Controller
      */
     public function create(Request $request)
     {
-        if ($request->name) {
-            $nuevoVendedor = new Vendedor(); //Instanciado la clase
-            $nuevoVendedor->name = $request->name;
-            // $nuevoAlumno->create($body->all());
-            $nuevoVendedor->state = 1;
-            $nuevoVendedor->save();
-            return "Vendedor Registrado Correctamente.";
-        }
-        return "Es nesesario ingresar un valor en el objeto de nombre: 'name' para ser registrar un vendedor.";
-    }
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Vendedor  $vendedor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Vendedor $vendedor)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Vendedor  $vendedor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Vendedor $vendedor)
-    {
-        //
+        $nuevoVendedor = new Vendedor();
+        $nuevoVendedor->name = $request->name;
+        $nuevoVendedor->state = 1;
+        $nuevoVendedor->save();
+        return "Vendedor Registrado Correctamente.";
     }
 
     /**
@@ -88,30 +55,27 @@ class VendedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            if (Vendedor::find($id) != null) {
-                $actualizarVendedor = Vendedor::find($id);
-                if ($request->all()) {
-                    if ($request->name) {
-                        $actualizarVendedor->name = $request->name;
-                    }
-                    if ($request->state) {
-                        if ($request->state == 1 || $request->state == 0) {
-                            $actualizarVendedor->state = $request->state;
-                        } else {
-                            return "'state' solo acepta los valores 0 o 1.\n 'state' sin modificaciones.\n";
-                        }
-                    }
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'max:1'],
+        ]);
 
-                    $actualizarVendedor->save();
-                    return "Registro " . $id . " se ha actualizado.";
-                }
-                return "No hubo actualizaciones.";
+        if (Vendedor::find($id) != null) {
+            $actualizarVendedor = Vendedor::find($id);
+
+            $actualizarVendedor->name = $request->name;
+
+            if ($request->state == 1 || $request->state == 0) {
+                $actualizarVendedor->state = $request->state;
             } else {
-                return "No existe un registro con ese id.";
+                return "'state' solo acepta los valores 0 o 1.\n 'state' sin modificaciones.\n";
             }
-        } catch (Exception $e) {
-            return "Es nesesario ingresar un valor en el objeto de nombre: 'name' para ser actualizado, en formato JSON";
+
+
+            $actualizarVendedor->save();
+            return "Registro " . $id . " se ha actualizado.";
+        } else {
+            return "No existe un registro con ese id.";
         }
     }
 
@@ -121,7 +85,7 @@ class VendedorController extends Controller
      * @param  \App\Models\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $num = $id;
         $borrarVendedor = Vendedor::find($id);
