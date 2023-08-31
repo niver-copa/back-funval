@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/alumnos', [AlumnosController::class, 'index']);
+Route::get('/alumnos/{id}', [AlumnosController::class, 'getById']);
+Route::post('/alumnos', [AlumnosController::class, 'create']);
+Route::put('/alumnos/{id}', [AlumnosController::class, 'update']);
+Route::delete('/alumnos/{id}', [AlumnosController::class, 'delete']);

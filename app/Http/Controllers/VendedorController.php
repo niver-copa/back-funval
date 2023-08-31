@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vendedores;
+use App\Models\Vendedor;
 use Illuminate\Http\Request;
 
-class VendedoresController extends Controller
+class VendedorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class VendedoresController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vendedores  $vendedores
+     * @param  \App\Models\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Vendedores $vendedores)
+    public function show(Vendedor $vendedor)
     {
         //
     }
@@ -52,10 +52,10 @@ class VendedoresController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vendedores  $vendedores
+     * @param  \App\Models\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vendedores $vendedores)
+    public function edit(Vendedor $vendedor)
     {
         //
     }
@@ -64,10 +64,10 @@ class VendedoresController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vendedores  $vendedores
+     * @param  \App\Models\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendedores $vendedores)
+    public function update(Request $request, Vendedor $vendedor)
     {
         //
     }
@@ -75,10 +75,10 @@ class VendedoresController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vendedores  $vendedores
+     * @param  \App\Models\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendedores $vendedores)
+    public function destroy(Vendedor $vendedor)
     {
         //
     }
