@@ -17,7 +17,11 @@ class ProveedorFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'persona_id' => 1,
+            'nombre_empresa' => fake()->company(),
+            'telefono_empresa' => fake()->phoneNumber(),
+            'email_empresa' => fake()->email(),
+            'direccion_empresa' => fake()->address()              
         ];
     }
 }
