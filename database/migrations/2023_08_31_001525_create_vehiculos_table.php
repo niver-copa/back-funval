@@ -34,6 +34,8 @@ return new class extends Migration
             $table->string('color');
             $table->string('anio');
             $table->unsignedBigInteger('sucursal_id');
+            $table->boolean('status');
+            
             $table->timestamps();
             
             $table->foreign('modelo_id')->references('id')->on('modelos');
