@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->unsignedBigInteger('marca_id');
-            $table->boolean('status');
+           $table->tinyInteger('status')->default(1);
 
             $table->foreign('marca_id')->references('id')->on('marcas');
 
