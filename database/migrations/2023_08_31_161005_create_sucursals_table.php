@@ -22,12 +22,12 @@ return new class extends Migration
             $table->string('num_interior');
             $table->string('localidad');
             $table->string('colonia');
-            $table->string('estado');
-            $table->string('cod_postal');
+            $table->string('ciudad');
+            $table->integer('cod_postal');
             $table->string('referencia');
             $table->string('municipio');
             $table->string('pais');
-            $table->string('estado');
+            $table->integer('estado');
             $table->timestamps();
         });
     }
