@@ -33,7 +33,7 @@ Route::prefix('marcas')->group(function () {
 Route::prefix('modelos')->group(function () {
     Route::get('/', [ModeloController::class, 'index']);
     Route::get('/{id}', [ModeloController::class, 'show']);
-    Route::post('/', [ModeloController::class, 'creat']);
+    Route::post('/', [ModeloController::class, 'create']);
     Route::put('/{id}', [ModeloController::class, 'update']);
     Route::delete('/{id}', [ModeloController::class, 'destroy']);
 });
