@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('marcas')->group(function () {
     Route::get('/', [MarcaController::class, 'index']);
     Route::get('/{id}', [MarcaController::class, 'show']);
-    Route::post('/', [MarcaController::class, 'store']);
+    Route::post('/', [MarcaController::class, 'create']);
     Route::put('/{id}', [MarcaController::class, 'update']);
     Route::delete('/{id}', [MarcaController::class, 'destroy']);
 });
@@ -33,7 +33,7 @@ Route::prefix('marcas')->group(function () {
 Route::prefix('modelos')->group(function () {
     Route::get('/', [ModeloController::class, 'index']);
     Route::get('/{id}', [ModeloController::class, 'show']);
-    Route::post('/', [ModeloController::class, 'store']);
+    Route::post('/', [ModeloController::class, 'creat']);
     Route::put('/{id}', [ModeloController::class, 'update']);
     Route::delete('/{id}', [ModeloController::class, 'destroy']);
 });
@@ -41,7 +41,7 @@ Route::prefix('modelos')->group(function () {
 Route::prefix('suspensiones')->group(function () {
     Route::get('/', [SuspensionController::class, 'index']);
     Route::get('/{id}', [SuspensionController::class, 'show']);
-    Route::post('/', [SuspensionController::class, 'store']);
+    Route::post('/', [SuspensionController::class, 'create']);
     Route::put('/{id}', [SuspensionController::class, 'update']);
     Route::delete('/{id}', [SuspensionController::class, 'destroy']);
 });
@@ -49,7 +49,7 @@ Route::prefix('suspensiones')->group(function () {
 Route::prefix('vehiculos')->group(function () {
     Route::get('/', [VehiculoController::class, 'index']);
     Route::get('/{id}', [VehiculoController::class, 'show']);
-    Route::post('/', [VehiculoController::class, 'store']);
+    Route::post('/', [VehiculoController::class, 'create']);
     Route::put('/{id}', [VehiculoController::class, 'update']);
     Route::delete('/{id}', [VehiculoController::class, 'destroy']);
 });
