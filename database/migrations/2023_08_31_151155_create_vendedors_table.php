@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('vendedors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->char('state', 1);
             $table->timestamps();
         });
     }
