@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePersonaRequest;
+use App\Http\Requests\UpdatePersonaRequest;
 use Illuminate\Http\Request;
 use App\Models\Persona;
 
@@ -12,7 +14,7 @@ class PersonaController extends Controller
         return Persona::all();
     }
 
-    public function store(Request $request)
+    public function store(StorePersonaRequest $request)
     {
         $nuevaPersona = new Persona;
 
@@ -25,6 +27,7 @@ class PersonaController extends Controller
         $nuevaPersona->direccion = $request->direccion;
         $nuevaPersona->codigo_postal = $request->codigo_postal;
         $nuevaPersona->pais = $request->pais;
+        $nuevaPersona->status = $request->status;
 
         $nuevaPersona->save();
 
@@ -36,7 +39,7 @@ class PersonaController extends Controller
         return Persona::find($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdatePersonaRequest $request, $id)
     {
         $personaActializar = Persona::find($id);
 
@@ -49,6 +52,7 @@ class PersonaController extends Controller
         $personaActializar->direccion = $request->direccion;
         $personaActializar->codigo_postal = $request->codigo_postal;
         $personaActializar->pais = $request->pais;
+        $personaActializar->status = $request->status;
 
         $personaActializar->save();
 
@@ -58,7 +62,8 @@ class PersonaController extends Controller
     public function destroy($id)
     {
         $personaEliminar = Persona::find($id);
-        $personaEliminar::destroy();
+        $personaEliminar->status = 0;
+        $personaEliminar->save();
 
         return "La persona con ID: $id fue eliminada";
     }

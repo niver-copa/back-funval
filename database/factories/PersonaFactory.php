@@ -22,10 +22,11 @@ class PersonaFactory extends Factory
             'telefono' => fake()->phoneNumber(),
             'sexo' => fake()->word(),
             'fecha_nacimiento' => fake()->date(),
-            'documento_identificacion' => fake()->date(),
+            'documento_identificacion' => fake()->number(),
             'direccion' => fake()->streetAddress(),
             'codigo_postal' => fake()->creditCardNumber(),
             'pais' => fake()->country(),
+            'status' => fake()->boolean(),
         ];
     }
 }

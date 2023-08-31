@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('direccion');
             $table->string('codigo_postal');
             $table->string('pais');           
+            $table->boolean('status')->default(1);           
             $table->timestamps();
         });
     }

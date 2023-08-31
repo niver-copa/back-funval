@@ -24,5 +24,5 @@ Route::controller(PersonaController::class)->group(function(){
     Route::put('/crear-persona', 'store');
     Route::get('/persona/{id}', 'show');
     Route::post('/persona/{id}', 'update');
-    Route::delete('/persona/{id}', 'destroy');
+    Route::post('/persona/{id}', 'destroy');
 });
