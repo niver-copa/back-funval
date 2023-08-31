@@ -18,6 +18,7 @@ class MarcaFactory extends Factory
     {
         return [
             'nombre' => fake()->word(),
+            'estado' => fake()->boolean(),
         ];
     }
 }
