@@ -45,40 +45,6 @@ class VendedorController extends Controller
         }
         return "Es nesesario ingresar un valor en el objeto de nombre: 'name' para ser registrar un vendedor.";
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Vendedor  $vendedor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Vendedor $vendedor)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Vendedor  $vendedor
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Vendedor $vendedor)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
