@@ -34,6 +34,8 @@ return new class extends Migration
             $table->string('color');
             $table->string('anio');
             $table->unsignedBigInteger('sucursal_id');
+            $table->boolean('stado');
+
             $table->timestamps();
             
             $table->foreign('modelo_id')->references('id')->on('modelos');
@@ -41,6 +43,7 @@ return new class extends Migration
             $table->foreign('caja_id')->references('id')->on('cajas');
             $table->foreign('delantera_suspension_id')->references('id')->on('suspensiones');
             $table->foreign('trasera_suspension_id')->references('id')->on('suspensiones');
+
             // $table->foreign('sucursal_id')->references('id')->on('sucursales');
           
         });

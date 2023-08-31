@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Combustible;
+use App\Models\Modelo;
+use App\Models\Suspension;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -31,8 +34,8 @@ class VehiculoFactory extends Factory
             'caja_id'=> fake()->name(),
             'velocidades'=> fake()->name(),
             'traccion'=> fake()->name(),
-            'delantera_suspension_id'=> Suspencion::inRandomOrder()->first()->id,
-            'trasera_suspension_id'=> Suspencion::inRandomOrder()->first()->id,
+            'delantera_suspension_id'=> Suspension::inRandomOrder()->first()->id,
+            'trasera_suspension_id'=> Suspension::inRandomOrder()->first()->id,
             'frenos_delanteros'=> fake()->name(),
             'color'=> fake()->name(),
             'anio'=> fake()->name(),
