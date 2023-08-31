@@ -17,7 +17,8 @@ class SuspensionFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => fake()->word(), 
+            'tipo' => fake()->word(), 
+            'estado' => fake()->boolean(),
         ];
     }
 }
