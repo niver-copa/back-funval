@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('persona_id');
+            /* $table->foreign('persona_id')->references('id')->on('persona'); */
+            $table->string("referencias");
+            $table->string("historial_de_compras");
+            $table->string("Nivel_de_satisfacción");
+            $table->string("Comentarios_observaciones");
+            $table->char('state',1)->default(1);
             $table->timestamps();
         });
     }
