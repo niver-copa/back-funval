@@ -17,7 +17,10 @@ class ClientesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'referencias' => fake()->address(),
+            'historial_de_compras' => fake()->date(),
+            'Nivel_de_satisfaccion' => fake()->lastName(),
+            'Comentarios_observaciones' => fake()->date(),
         ];
     }
 }
