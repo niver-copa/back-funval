@@ -20,8 +20,8 @@ class ClienteFactory extends Factory
             'persona_id' => 1,
             'referencias' => fake()->address(),
             'historial_de_compras' => fake()->date(),
-            'Nivel_de_satisfaccion' => fake()->lastName(),
-            'Comentarios_observaciones' => fake()->date(),
+            'nivel_de_satisfaccion' => fake()->lastName(),
+            'comentarios_observaciones' => fake()->date(),
         ];
     }
 }

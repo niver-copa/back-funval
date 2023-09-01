@@ -139,18 +139,18 @@ class ClienteController extends Controller
                         return "El Historial de compras debe ser una cadena de texto";
                     }
                 }
-                if($request->Nivel_de_satisfacción){
-                    if(is_string($request->Nivel_de_satisfacción)){
-                        $edita ->Nivel_de_satisfacción = $request->Nivel_de_satisfacción;
+                if($request->nivel_de_satisfacción){
+                    if(is_string($request->nivel_de_satisfacción)){
+                        $edita ->nivel_de_satisfacción = $request->nivel_de_satisfacción;
                         return "Nivel de satisfacción actualizadas correctamente";
                     }else{
                         return "El Nivel de satisfacción debe ser una cadena de texto";
                     }
                     
                 }
-                if($request->Comentarios_observaciones){
-                    if(is_string($request->Comentarios_observaciones)){
-                        $edita ->Comentarios_observaciones = $request->Comentarios_observaciones;
+                if($request->comentarios_observaciones){
+                    if(is_string($request->comentarios_observaciones)){
+                        $edita ->comentarios_observaciones = $request->comentarios_observaciones;
                         return "Comentarios u observaciones actualizados correctamente";
                     }else{
                         return "Comentarios u observaciones debe ser una cadena de texto";
