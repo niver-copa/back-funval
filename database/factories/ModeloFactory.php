@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Persona;
+use App\Models\Marca;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Vendedor>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Modelo>
  */
-class VendedorFactory extends Factory
+class ModeloFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +18,9 @@ class VendedorFactory extends Factory
     public function definition()
     {
         return [
-            'persona_id' => Persona::all()->random(),
-            'state' => "1",
+            'nombre' => fake()->word(),
+            'marca_id' => Marca::inRandomOrder()->first()->id,
+
         ];
     }
 }
