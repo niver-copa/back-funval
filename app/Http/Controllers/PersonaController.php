@@ -27,7 +27,7 @@ class PersonaController extends Controller
         $nuevaPersona->direccion = $request->direccion;
         $nuevaPersona->codigo_postal = $request->codigo_postal;
         $nuevaPersona->pais = $request->pais;
-        $nuevaPersona->status = $request->status;
+        $nuevaPersona->state = $request->state;
 
         $nuevaPersona->save();
 
@@ -52,7 +52,7 @@ class PersonaController extends Controller
         $personaActializar->direccion = $request->direccion;
         $personaActializar->codigo_postal = $request->codigo_postal;
         $personaActializar->pais = $request->pais;
-        $personaActializar->status = $request->status;
+        $personaActializar->state = $request->state;
 
         $personaActializar->save();
 
@@ -62,7 +62,7 @@ class PersonaController extends Controller
     public function destroy($id)
     {
         $personaEliminar = Persona::find($id);
-        $personaEliminar->status = 0;
+        $personaEliminar->state = 0;
         $personaEliminar->save();
 
         return "La persona con ID: $id fue eliminada";
