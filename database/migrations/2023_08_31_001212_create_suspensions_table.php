@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('tipo');
 
-            $table->boolean('estado');
+           $table->tinyInteger('status')->default(1);
 
             $table->timestamps();
         });

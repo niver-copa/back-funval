@@ -16,4 +16,5 @@ class Suspension extends Model
     {
         return $this->hasMany(Vehiculo::class);
     }
+
 }

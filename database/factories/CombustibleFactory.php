@@ -18,6 +18,7 @@ class CombustibleFactory extends Factory
     {
         return [
             'nombre' => fake()->word(),
+            
         ];
     }
 }

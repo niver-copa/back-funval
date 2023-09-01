@@ -18,7 +18,7 @@ class SuspensionFactory extends Factory
     {
         return [
             'tipo' => fake()->word(), 
-            'estado' => fake()->boolean(),
+
         ];
     }
 }

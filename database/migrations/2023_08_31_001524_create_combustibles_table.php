@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('combustibles', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->boolean('status');
+           $table->tinyInteger('status')->default(1);
             
             $table->timestamps();
         });

@@ -15,6 +15,8 @@ class SuspensionSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Suspension::factory(10)->create();
+
+        Suspension::factory(10)->create();
+
     }
 }

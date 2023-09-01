@@ -94,8 +94,6 @@ class VehiculoController extends Controller
         }
     }
 
-   
-
     public function update($id,Request $request)
     {
         $validator = validator($request->all(), [

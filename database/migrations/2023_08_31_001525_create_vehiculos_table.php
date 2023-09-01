@@ -34,7 +34,8 @@ return new class extends Migration
             $table->string('color');
             $table->string('anio');
             $table->unsignedBigInteger('sucursal_id');
-            $table->boolean('stado');
+
+            $table->tinyInteger('status')->default(1);
 
             $table->timestamps();
             

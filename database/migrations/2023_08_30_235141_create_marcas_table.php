@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('marcas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->boolean('estado');
+
+            $table->tinyInteger('status')->default(1);
+            
+
             $table->timestamps();
         });
     }
