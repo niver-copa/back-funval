@@ -17,7 +17,7 @@ class VendedorFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
+            // 'persona_id' => Persona::all()->random(),
             'state' => "1",
         ];
     }
