@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('localidad');
             $table->string('colonia');
             $table->string('ciudad');
-            $table->integer('cod_postal');
+            $table->string('cod_postal');
             $table->string('referencia');
             $table->string('municipio');
             $table->string('pais');

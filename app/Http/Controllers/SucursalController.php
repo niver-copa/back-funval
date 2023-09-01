@@ -27,7 +27,7 @@ class SucursalController extends Controller
                 'calle' => 'required|string|max:100',
                 'localidad' => 'required|string',
                 'ciudad' => 'required|string',
-                'cod_postal' => 'required|numeric|min:5', // Cambiado a string basándonos en la discusión anterior
+                'cod_postal' => 'required|string', // Cambiado a string basándonos en la discusión anterior
                 'referencia' => 'required|string|min:2',
                 'municipio' => 'required|string',
                 'pais' => 'required|string',
@@ -40,7 +40,7 @@ class SucursalController extends Controller
             
             $sucursal = Sucursal::create($validateData);
             
-            return $sucursal;
+            return response()->json(['msj' => 'Sucursal creada correctamente'], 200);
     
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], 422);
@@ -54,7 +54,7 @@ class SucursalController extends Controller
                 'calle' => 'required|string|max:100',
                 'localidad' => 'required|string',
                 'ciudad' => 'required|string',
-                'cod_postal' => 'required|numeric|min:5',
+                'cod_postal' => 'required|string',
                 'referencia' => 'required|string|min:2',
                 'municipio' => 'required|string',
                 'pais' => 'required|string',
@@ -76,7 +76,7 @@ class SucursalController extends Controller
         $sucursal->fill($validateData);
         $sucursal->save();
         
-        return $sucursal;
+        return response()->json(['msj' => 'Sucursal creada correctamente.'], 200);
     }
 
     public function destroy($id) {
