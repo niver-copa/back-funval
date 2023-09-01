@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sucursal;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class SucursalController extends Controller
 {
     public function index() {
@@ -12,9 +13,9 @@ class SucursalController extends Controller
         return $sucursales;
     }
     public function show($id) {
-        $sucursal = Sucursal::where('id', $id)->where('estado', true)->first();
+        $sucursal = Sucursal::where('id', $id)->where('estado', true)->firstOrFail();
         if(!$sucursal) {        
-            return response()->json(["error"=>"Sucursal not existent or deleted. Verify the sucursal's id."]);
+            return response()->json(["error"=>"Sucursal con id: $id no existe o fue eliminada."]);
         }
         return $sucursal;
     }
@@ -26,30 +27,21 @@ class SucursalController extends Controller
                 'calle' => 'required|string|max:100',
                 'localidad' => 'required|string',
                 'ciudad' => 'required|string',
-                'cod_postal' => 'required|numeric|min:5',
+                'cod_postal' => 'required|numeric|min:5', // Cambiado a string basándonos en la discusión anterior
                 'referencia' => 'required|string|min:2',
                 'municipio' => 'required|string',
                 'pais' => 'required|string',
+                'num_exterior' => 'string|max:255',
+                'num_interior' => 'string|max:255',
+                'colonia' => 'string|max:255',
             ]);
+    
+            $validateData['estado'] = true;
             
-            $sucursal = new Sucursal();
-            $sucursal->nombre = $validateData['nombre'];
-            $sucursal->codigo = $validateData['codigo'];
-            $sucursal->calle = $validateData['calle'];
-            $sucursal->num_exterior = $validateData['num_exterior'];
-            $sucursal->num_interior = $validateData['num_interior'];
-            $sucursal->localidad = $validateData['localidad'];
-            $sucursal->colonia = $validateData['colonia'];
-            $sucursal->ciudad = $validateData['ciudad'];
-            $sucursal->cod_postal = $validateData['cod_postal'];
-            $sucursal->referencia = $validateData['referencia'];
-            $sucursal->municipio = $validateData['municipio'];
-            $sucursal->pais = $validateData['pais'];
-            $sucursal->estado = true;
-            $sucursal->save();
+            $sucursal = Sucursal::create($validateData);
             
             return $sucursal;
-
+    
         } catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], 422);
         }
@@ -66,35 +58,36 @@ class SucursalController extends Controller
                 'referencia' => 'required|string|min:2',
                 'municipio' => 'required|string',
                 'pais' => 'required|string',
+                'num_exterior' => 'string|max:255',
+                'num_interior' => 'string|max:255',
+                'colonia' => 'string|max:255',
             ]);
         }
         catch (ValidationException $e) {
             return response()->json(['error' => $e->errors()], 422);
         }
 
-        $sucursal = Sucursal::where('id', $id)->where('estado', true)->first();
+        try {
+            $sucursal = Sucursal::where('id', $id)->where('estado', true)->firstOrFail();
+        } catch (ModelNotFoundException) {
+            return response()->json(["error" => "Sucursal con id: $id no existe o fue eliminada."], 404);
+        }
 
-        $sucursal->nombre = $validateData['nombre'];
-        $sucursal->codigo = $validateData['codigo'];
-        $sucursal->calle = $validateData['calle'];
-        $sucursal->num_exterior = $validateData['num_exterior'];
-        $sucursal->num_interior = $validateData['num_interior'];
-        $sucursal->localidad = $validateData['localidad'];
-        $sucursal->colonia = $validateData['colonia'];
-        $sucursal->ciudad = $validateData['ciudad'];
-        $sucursal->cod_postal = $validateData['cod_postal'];
-        $sucursal->referencia = $validateData['referencia'];
-        $sucursal->municipio = $validateData['municipio'];
-        $sucursal->pais = $validateData['pais'];
+        $sucursal->fill($validateData);
         $sucursal->save();
         
         return $sucursal;
     }
 
-    public function destroy(Sucursal $sucursal) {
-        $sucursal->status = false;
-        $sucursal->save();
-        return $sucursal;
+    public function destroy($id) {
+        try {
+            $sucursal = Sucursal::where('id', $id)->where('estado', true)->firstOrFail();
+            $sucursal->estado = false;
+            $sucursal->save();
+            return $sucursal;
+        } catch (ModelNotFoundException) {
+            return response()->json(["error" => "Sucursal con id: $id no existe o ya fue eliminada."], 404);
+        }
     }
 
 }
