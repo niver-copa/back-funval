@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\VendedorController;
 use App\Http\Controllers\ClientesController;
 use Illuminate\Http\Request;
@@ -21,6 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::controller(PersonaController::class)->group(function(){
+    Route::get('/personas', 'index');
+    Route::put('/crear-persona', 'store');
+    Route::get('/persona/{id}', 'show');
+    Route::post('/persona/{id}', 'update');
+    Route::post('/persona/{id}', 'destroy');
+});
 
 Route::get('/vendedor', [VendedorController::class, 'index']);
 Route::get('/vendedor/{id}', [VendedorController::class, 'getById']);
@@ -34,6 +42,7 @@ Route::controller(ClientesController::class)->group(function(){
     Route::put('update', "update");
 
 });
+
 Route::get('/proveedores', [ProveedorController::class, 'show']);
 Route::get('/proveedores/{id}', [ProveedorController::class, 'getById']);
 Route::post('/proveedores/new', [ProveedorController::class, 'new']);
