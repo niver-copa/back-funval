@@ -32,7 +32,7 @@ return new class extends Migration
             $table->unsignedBigInteger('trasera_suspension_id');
             $table->string('frenos_delanteros');
             $table->string('color');
-            $table->string('anio');
+            $table->year('anio');
             $table->unsignedBigInteger('sucursal_id');
 
             $table->tinyInteger('status')->default(1);

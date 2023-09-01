@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Caja;
 use App\Models\Combustible;
 use App\Models\Modelo;
 use App\Models\Suspension;
@@ -31,14 +32,15 @@ class VehiculoFactory extends Factory
             'cilindraje'=> fake()->word(),
             'compresion'=> fake()->randomNumber(),
             'alimentacion'=> fake()->word(),
-            'caja_id'=> fake()->name(),
+            'caja_id'=> Caja::inRandomOrder()->first()->id,
             'velocidades'=> fake()->numberBetween(2, 10),
             'traccion'=> fake()->word(),
             'delantera_suspension_id'=> Suspension::inRandomOrder()->first()->id,
             'trasera_suspension_id'=> Suspension::inRandomOrder()->first()->id,
             'frenos_delanteros'=> fake()->name(),
             'color'=> fake()->name(),
-            'anio'=> fake()->name(),
+            'anio'=> fake()->year(),
+            'sucursal_id'=> fake()->year(),
            
 
             // 'sucursal_id'=> Sucursal::inRandomOrder()->first()->id

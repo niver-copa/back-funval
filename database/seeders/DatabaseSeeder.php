@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         
         $this->call(MarcaSeeder::class);
         $this->call(ModeloSeeder::class);
-        $this->call(Suspension::class);
+        $this->call(SuspensionSeeder::class);
         $this->call(CombustibleSeeder::class);
         $this->call(CajaSeeder::class);
         $this->call(VehiculoSeeder::class);
