@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
@@ -19,6 +20,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::controller(ClientesController::class)->group(function(){
+    Route::post('create', "create");
+    Route::put('destroy', "destroy");
+    Route::put('update', "update");
+
+});
 Route::get('/proveedores', [ProveedorController::class, 'show']);
 Route::get('/proveedores/{id}', [ProveedorController::class, 'getById']);
 Route::post('/proveedores/new', [ProveedorController::class, 'new']);
