@@ -17,7 +17,7 @@ class SucursalFactory extends Factory
     public function definition()
     {
         return [
-            'mombre' => fake()->name(),
+            'nombre' => fake()->name(),
             'codigo' => fake()->unique()->randomNumber(5),
             'calle' => fake()->address(),
             'num_exterior' => fake()->randomNumber(4),
@@ -25,11 +25,11 @@ class SucursalFactory extends Factory
             'localidad' => fake()->name(),
             'colonia' => fake()->name(),
             'ciudad' => fake()->city(),
-            'cod_postal' => fake()->randomNumber(5),
+            'cod_postal' => fake()->countryCode(),
             'referencia' => fake()->sentence(4),
             'municipio' => fake()->city(),
             'pais' => fake()->country(),
-            'estado' => fake()->randomNumber(1),
+            'estado' => true,
         ];
     }
 }

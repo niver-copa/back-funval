@@ -24,4 +24,6 @@ class Sucursal extends Model
         'colonia',
         'estado',
     ];
+
+    protected $table = 'sucursales';
 }
