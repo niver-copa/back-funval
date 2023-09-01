@@ -17,7 +17,7 @@ class ModeloController extends Controller
 
         foreach ($modelos as $m) {
             $marca = $m->modelos;
-            if ($m->estado == true) {
+            if ($m->status == true) {
                 $listaFiltrada[] = $m;
             }
         }
@@ -92,7 +92,7 @@ class ModeloController extends Controller
             $modelo = Modelo::find($id);
 
             if (isset($modelo)) {
-                $modelo->estado = false;
+                $modelo->status = false;
                 $modelo->save();
                 return "El registro se elimino correctamente";
             } else {

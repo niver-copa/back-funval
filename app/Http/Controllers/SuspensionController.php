@@ -17,7 +17,7 @@ class SuspensionController extends Controller
 
         foreach ($suspensiones as $s) {
             $vehiculos = $s->vehiculos;
-            if ($s->estado == true) {
+            if ($s->status == true) {
                 $listaFiltrada[] = $s;
             }
         }
@@ -38,7 +38,7 @@ class SuspensionController extends Controller
         try {
             $nuevaSuspension = new Suspension();
             $nuevaSuspension->tipo = $post->tipo;
-            $nuevaSuspension->estado = true;
+            $nuevaSuspension->status = true;
 
             $nuevaSuspension->save();
 
@@ -96,7 +96,7 @@ class SuspensionController extends Controller
             $suspension = Suspension::find($id);
 
             if (isset($suspension)) {
-                $suspension->estado = false;
+                $suspension->status = false;
                 $suspension->save();
                 return "El registro se elimino correctamente";
             } else {
