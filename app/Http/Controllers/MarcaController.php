@@ -16,8 +16,10 @@ class MarcaController extends Controller
         $listaFiltrada = array();
 
         foreach ($marcas as $m) {
+
             $m->modelos;
             if ($m->estado == true) {
+
                 $listaFiltrada[] = $m;
             }
         }
@@ -99,7 +101,7 @@ class MarcaController extends Controller
             $marca = Marca::find($id);
 
             if (isset($marca)) {
-                $marca->estado = false;
+                $marca->status = false;
                 $marca->save();
                 return "El registro se elimino correctamente";
             } else {
