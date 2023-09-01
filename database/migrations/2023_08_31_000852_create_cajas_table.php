@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('cajas', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
+           $table->tinyInteger('status')->default(1);
 
             $table->timestamps();
         });

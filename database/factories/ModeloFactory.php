@@ -20,6 +20,7 @@ class ModeloFactory extends Factory
         return [
             'nombre' => fake()->word(),
             'marca_id' => Marca::inRandomOrder()->first()->id,
+
         ];
     }
 }

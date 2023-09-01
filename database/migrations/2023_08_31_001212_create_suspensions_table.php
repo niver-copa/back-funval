@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('suspensions', function (Blueprint $table) {
+        Schema::create('suspensiones', function (Blueprint $table) {
             $table->id();
             $table->string('tipo');
-            
+
+           $table->tinyInteger('status')->default(1);
+
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suspensions');
+        Schema::dropIfExists('suspensiones');
     }
 };
