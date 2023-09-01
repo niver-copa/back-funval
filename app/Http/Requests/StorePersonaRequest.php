@@ -33,7 +33,7 @@ class StorePersonaRequest extends FormRequest
             'direccion' => 'required|string',
             'codigo_postal' => 'required|string',
             'pais' => 'required|string',
-            'status' => 'required|boolean',
+            'state' => 'required|boolean',
         ];
     }
 }
