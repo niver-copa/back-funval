@@ -17,7 +17,13 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        return vehiculo::where('status', 1)->get();
+        $vehiculo = vehiculo::where('status', 1)->get();
+        $vehiculo->load('modelo');
+        $vehiculo->load('combustible');
+        $vehiculo->load('delantera_suspension');
+        $vehiculo->load('trasera_suspension');
+        $vehiculo->load('sucursal');
+        return $vehiculo;
     }
 
     
@@ -34,6 +40,11 @@ class VehiculoController extends Controller
 
         try {
             $vehiculo = vehiculo::findOrFail($id);
+            $vehiculo->load('modelo');
+            $vehiculo->load('combustible');
+            $vehiculo->load('delantera_suspension');
+            $vehiculo->load('trasera_suspension');
+            $vehiculo->load('sucursal');
 
             return $vehiculo;
         } catch (ModelNotFoundException $e) {
@@ -47,36 +58,41 @@ class VehiculoController extends Controller
     
     public function create(Request $request)
     {
-        $validator = validator($request->all(), [
-            'modelo_id'=> 'required|exists:modelo,id',
-            'combustible_id'=> 'required|numeric',
-            'potencia'=> 'required|numeric',
-            'torque_maximo'=> 'required|numeric',
-            'ubicacion'=> 'required',
-            'cilindros'=> 'required',
-            'diametro_carrera'=> 'required',
-            'cilindraje'=>'required',
-            'compresion'=> 'required|numeric',
-            'alimentacion'=> 'required',
-            'caja_id'=> 'required|exists:caja,id',
-            'velocidades'=> 'required',
-            'traccion'=> 'required',
-            'delantera_suspension_id'=> 'required|exists:suspension,id',
-            'trasera_suspension_id'=> 'required|exists:suspension,id',
-            'frenos_delanteros'=> 'required',
-            'color'=> 'required',
-            'anio'=> 'required|numeric',
-            'sucursal_id'=> 'required|sucursal:caja,id',
-        ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
+       
         try {
+
+            $validator = validator($request->all(), [
+                'modelo_id'=> 'required|exists:modelos,id',
+                'combustible_id'=> 'required|numeric',
+                'potencia'=> 'required|numeric',
+                'torque_maximo'=> 'required|numeric',
+                'ubicacion'=> 'required',
+                'cilindros'=> 'required',
+                'diametro_carrera'=> 'required',
+                'cilindraje'=>'required',
+                'compresion'=> 'required|numeric',
+                'alimentacion'=> 'required',
+                'caja_id'=> 'required|exists:cajas,id',
+                'velocidades'=> 'required',
+                'traccion'=> 'required',
+                'delantera_suspension_id'=> 'required|exists:suspensiones,id',
+                'trasera_suspension_id'=> 'required|exists:suspensiones,id',
+                'frenos_delanteros'=> 'required',
+                'color'=> 'required',
+                'anio'=> 'required|numeric',
+                'sucursal_id'=> 'required|exists:sucursales,id',
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
+            
             vehiculo::create($request->all());
            
-           
+            return response()->json(['msj' => 'Vehiculo creado correctamente'], 200);
+        
         } catch (QueryException $e) {
             $errormsj = $e->getMessage();
 
@@ -96,37 +112,41 @@ class VehiculoController extends Controller
 
     public function update($id,Request $request)
     {
-        $validator = validator($request->all(), [
-            'modelo_id'=> 'required|exists:modelo,id',
-            'combustible_id'=> 'required|numeric',
-            'potencia'=> 'required|numeric',
-            'torque_maximo'=> 'required|numeric',
-            'ubicacion'=> 'required',
-            'cilindros'=> 'required',
-            'diametro_carrera'=> 'required',
-            'cilindraje'=>'required',
-            'compresion'=> 'required|numeric',
-            'alimentacion'=> 'required',
-            'caja_id'=> 'required|exists:caja,id',
-            'velocidades'=> 'required',
-            'traccion'=> 'required',
-            'delantera_suspension_id'=> 'required|exists:suspension,id',
-            'trasera_suspension_id'=> 'required|exists:suspension,id',
-            'frenos_delanteros'=> 'required',
-            'color'=> 'required',
-            'anio'=> 'required|numeric',
-            'sucursal_id'=> 'required|sucursal:caja,id',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-
+        
         try {
+            $validator = validator($request->all(), [
+                'modelo_id'=> 'required|exists:modelos,id',
+                'combustible_id'=> 'required|numeric',
+                'potencia'=> 'required|numeric',
+                'torque_maximo'=> 'required|numeric',
+                'ubicacion'=> 'required',
+                'cilindros'=> 'required',
+                'diametro_carrera'=> 'required',
+                'cilindraje'=>'required',
+                'compresion'=> 'required|numeric',
+                'alimentacion'=> 'required',
+                'caja_id'=> 'required|exists:cajas,id',
+                'velocidades'=> 'required',
+                'traccion'=> 'required',
+                'delantera_suspension_id'=> 'required|exists:suspensiones,id',
+                'trasera_suspension_id'=> 'required|exists:suspensiones,id',
+                'frenos_delanteros'=> 'required',
+                'color'=> 'required',
+                'anio'=> 'required|numeric',
+                'sucursal_id'=> 'required|exists:sucursales,id',
+                'status' => 'required'
+            ]);
+    
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
             $vehiculo = vehiculo::findOrFail($id);
             $vehiculo->update($request->all());
+            $vehiculo->status = $request->status;
             $vehiculo->save();
+
+           
 
             return response()->json(['msj' => 'vehiculo actualizado correctamente'], 200);
         } catch (ModelNotFoundException $e) {
@@ -141,7 +161,7 @@ class VehiculoController extends Controller
                 return response()->json(['error' => 'Error: ' . $duplicateValue . ' ya esta en uso'], 422);
             }
 
-            return response()->json(['error' => 'Error en la acción realizada'], 500);
+            return response()->json(['error' => 'Error en la acción realizada'.$errormsj], 500);
         } catch (Exception $e) {
             return response()->json(['error' => 'Error en la acción realizada'], 500);
         }

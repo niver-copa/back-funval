@@ -16,12 +16,14 @@ class MarcaController extends Controller
         $listaFiltrada = array();
 
         foreach ($marcas as $m) {
-            $modelos = $m->modelos;
-            if ($m->status == true) {
+
+            $m->modelos;
+            if ($m->estado == true) {
+
                 $listaFiltrada[] = $m;
             }
         }
-        return $listaFiltrada;
+        return $marcas;
     }
 
 
