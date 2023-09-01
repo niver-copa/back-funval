@@ -26,7 +26,7 @@ class PersonaFactory extends Factory
             'direccion' => fake()->streetAddress(),
             'codigo_postal' => fake()->creditCardNumber(),
             'pais' => fake()->country(),
-            'status' => fake()->boolean(),
+            'state' => fake()->boolean(),
         ];
     }
 }
