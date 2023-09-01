@@ -6,6 +6,7 @@ use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\SuspensionController;
 use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\SucursalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +53,12 @@ Route::prefix('vehiculos')->group(function () {
     Route::post('/', [VehiculoController::class, 'create']);
     Route::put('/{id}', [VehiculoController::class, 'update']);
     Route::delete('/{id}', [VehiculoController::class, 'destroy']);
+});
+
+Route::prefix('sucursales')->group(function () {
+    Route::get('/', [SucursalController::class, 'index']);
+    Route::get('/{id}', [SucursalController::class, 'show']);
+    Route::post('/', [SucursalController::class, 'create']);
+    Route::put('/{id}', [SucursalController::class, 'update']);
+    Route::delete('/{id}', [SucursalController::class, 'destroy']);
 });
