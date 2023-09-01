@@ -18,7 +18,7 @@ class MarcaFactory extends Factory
     {
         return [
             'nombre' => fake()->word(),
-           
+
         ];
     }
 }

@@ -15,6 +15,11 @@ class CombustibleSeeder extends Seeder
      */
     public function run()
     {
-        Combustible::factory(10)->create();
+
+        Combustible::create(['nombre' => 'Gasolina']);
+        Combustible::create(['nombre' => 'Diesel']);
+        Combustible::create(['nombre' => 'GLP']);
+        Combustible::create(['nombre' => 'Electricidad']);
+
     }
 }

@@ -15,6 +15,9 @@ class CajaSeeder extends Seeder
      */
     public function run()
     {
-        Caja::factory(10)->create();
+
+        Caja::create(['nombre' => 'Automatica']);
+        Caja::create(['nombre' => 'Manual']);
+
     }
 }
