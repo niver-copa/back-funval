@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Caja;
 use App\Models\Combustible;
 use App\Models\Modelo;
+use App\Models\Sucursal;
 use App\Models\Suspension;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -40,10 +41,7 @@ class VehiculoFactory extends Factory
             'frenos_delanteros'=> fake()->name(),
             'color'=> fake()->name(),
             'anio'=> fake()->year(),
-            'sucursal_id'=> fake()->year(),
-           
-
-            // 'sucursal_id'=> Sucursal::inRandomOrder()->first()->id
+            'sucursal_id'=> Sucursal::inRandomOrder()->first()->id
            
         ];
     }
