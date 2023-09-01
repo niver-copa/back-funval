@@ -19,8 +19,8 @@ return new class extends Migration
             /* $table->foreign('persona_id')->references('id')->on('persona'); */
             $table->string("referencias");
             $table->string("historial_de_compras");
-            $table->string("Nivel_de_satisfaccion");
-            $table->string("Comentarios_observaciones");
+            $table->string("nivel_de_satisfaccion");
+            $table->string("comentarios_observaciones");
             $table->char('state',1)->default(1);
             $table->timestamps();
         });

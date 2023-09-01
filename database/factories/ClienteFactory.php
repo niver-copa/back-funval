@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Clientes>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Cliente>
  */
-class ClientesFactory extends Factory
+class ClienteFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,11 @@ class ClientesFactory extends Factory
     public function definition()
     {
         return [
+            'persona_id' => 1,
             'referencias' => fake()->address(),
             'historial_de_compras' => fake()->date(),
-            'Nivel_de_satisfaccion' => fake()->lastName(),
-            'Comentarios_observaciones' => fake()->date(),
+            'nivel_de_satisfaccion' => fake()->lastName(),
+            'comentarios_observaciones' => fake()->date(),
         ];
     }
 }
