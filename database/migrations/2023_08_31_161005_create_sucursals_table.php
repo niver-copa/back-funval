@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('codigo');
             $table->string('calle');
-            $table->string('num_exterior');
-            $table->string('num_interior');
+            $table->string('num_exterior')->nullable();
+            $table->string('num_interior')->nullable();
             $table->string('localidad');
             $table->string('colonia');
             $table->string('ciudad');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('referencia');
             $table->string('municipio');
             $table->string('pais');
-            $table->integer('estado');
+            $table->boolean('estado');
             $table->timestamps();
         });
     }
