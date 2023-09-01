@@ -2,6 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Caja;
+use App\Models\Combustible;
+use App\Models\Modelo;
+use App\Models\Suspension;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,21 +26,24 @@ class VehiculoFactory extends Factory
             'combustible_id'=> Combustible::inRandomOrder()->first()->id,
             'potencia'=> fake()->numberBetween(109, 6000),
             'torque_maximo'=> fake()->numberBetween(141, 4200),
-            'ubicacion'=> fake()->name(),
-            'cilindros'=> fake()->name(),
-            'diametro_carrera'=> fake()->name(),
-            'cilindraje'=> fake()->name(),
+            'ubicacion'=> fake()->word(),
+            'cilindros'=> fake()->word(),
+            'diametro_carrera'=> fake()->word(),
+            'cilindraje'=> fake()->word(),
             'compresion'=> fake()->randomNumber(),
-            'alimentacion'=> fake()->name(),
-            'caja_id'=> fake()->name(),
-            'velocidades'=> fake()->name(),
-            'traccion'=> fake()->name(),
-            'delantera_suspension_id'=> Suspencion::inRandomOrder()->first()->id,
-            'trasera_suspension_id'=> Suspencion::inRandomOrder()->first()->id,
+            'alimentacion'=> fake()->word(),
+            'caja_id'=> Caja::inRandomOrder()->first()->id,
+            'velocidades'=> fake()->numberBetween(2, 10),
+            'traccion'=> fake()->word(),
+            'delantera_suspension_id'=> Suspension::inRandomOrder()->first()->id,
+            'trasera_suspension_id'=> Suspension::inRandomOrder()->first()->id,
             'frenos_delanteros'=> fake()->name(),
             'color'=> fake()->name(),
-            'anio'=> fake()->name(),
-            'sucursal_id'=> Sucursal::inRandomOrder()->first()->id
+            'anio'=> fake()->year(),
+            'sucursal_id'=> fake()->year(),
+           
+
+            // 'sucursal_id'=> Sucursal::inRandomOrder()->first()->id
            
         ];
     }
