@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('telefono_empresa');
             $table->string('direccion_empresa');
             $table->string('email_empresa');
-            $table->boolean('activo')->default(true);   
+            $table->boolean('state')->default(true);   
             $table->timestamps();
         });
     }
