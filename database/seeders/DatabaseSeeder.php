@@ -16,14 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        $this->call(ClienteSeeder::class);
-
-        $this->call(ProveedorSeeder::class);
-
-        $this->call(VendedorSeeder::class);
-
         $this->call(PersonaSeeder::class);
+        $this->call(ClienteSeeder::class);
+        $this->call(ProveedorSeeder::class);
+        $this->call(VendedorSeeder::class);
 
         \App\Models\Sucursal::factory(10)->create();
         $this->call(MarcaSeeder::class);
@@ -32,6 +28,5 @@ class DatabaseSeeder extends Seeder
         $this->call(CombustibleSeeder::class);
         $this->call(CajaSeeder::class);
         $this->call(VehiculoSeeder::class);
-
     }
 }

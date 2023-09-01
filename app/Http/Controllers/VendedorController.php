@@ -36,11 +36,11 @@ class VendedorController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'persona_id' => ['required', 'string'],
         ]);
 
         $nuevoVendedor = new Vendedor();
-        $nuevoVendedor->name = $request->name;
+        $nuevoVendedor->persona_id = $request->persona_id;
         $nuevoVendedor->state = 1;
         $nuevoVendedor->save();
         return "Vendedor Registrado Correctamente.";
@@ -56,14 +56,14 @@ class VendedorController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'persona_id' => ['required', 'string'],
             'state' => ['required', 'string', 'max:1'],
         ]);
 
         if (Vendedor::find($id) != null) {
             $actualizarVendedor = Vendedor::find($id);
 
-            $actualizarVendedor->name = $request->name;
+            $actualizarVendedor->persona_id = $request->persona_id;
 
             if ($request->state == 1 || $request->state == 0) {
                 $actualizarVendedor->state = $request->state;
