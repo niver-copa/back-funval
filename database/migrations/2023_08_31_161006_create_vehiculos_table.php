@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('ubicacion');
             $table->string('cilindros');
             $table->string('diametro_carrera');
-            $table->string('cilindraje');
+            $table->string('cilindraje')->default("1");
             $table->string('compresion');
             $table->string('alimentacion');
             $table->unsignedBigInteger('caja_id');
