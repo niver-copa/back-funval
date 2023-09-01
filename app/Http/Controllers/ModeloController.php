@@ -12,16 +12,9 @@ class ModeloController extends Controller
 {
     public function index()
     {
-        $modelos = Modelo::all();
-        $listaFiltrada = array();
-
-        foreach ($modelos as $m) {
-            $marca = $m->modelos;
-            if ($m->estado == true) {
-                $listaFiltrada[] = $m;
-            }
-        }
-        return $listaFiltrada;
+        $modelo = Modelo::where('status', 1)->get();
+        $modelo->load('marca');
+        return $modelo;
     }
 
     public function create(Request $post)
@@ -39,7 +32,7 @@ class ModeloController extends Controller
             $nuevoModelo = new Modelo();
             $nuevoModelo->nombre = $post->nombre;
             $nuevoModelo->marca_id = $post->marca_id;
-
+       
             $nuevoModelo->save();
 
             return "El registro se creo correctamente";
@@ -52,7 +45,7 @@ class ModeloController extends Controller
     {
         try {
             $modelo = Modelo::findOrFail($id);
-            $marca = $modelo->marca;
+            $modelo->marca;
 
             return $modelo;
         } catch (QueryException $e) {

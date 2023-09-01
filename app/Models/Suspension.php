@@ -12,13 +12,5 @@ class Suspension extends Model
 
     protected $table = 'suspensiones';
 
-    public function vehiculos_t(): HasMany
-    {
-        return $this->hasMany(Vehiculo::class,'trasera_suspension_id');
-    }
-    public function vehiculos_d(): HasMany
-    {
-        return $this->hasMany(Vehiculo::class,'delantera_suspension_id');
-    }
 
 }

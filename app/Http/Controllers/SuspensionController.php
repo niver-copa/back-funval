@@ -12,16 +12,9 @@ class SuspensionController extends Controller
 {
     public function index()
     {
-        $suspensiones = Suspension::all();
-        $listaFiltrada = array();
-
-        foreach ($suspensiones as $s) {
-            $vehiculos = $s->vehiculos;
-            if ($s->estado == true) {
-                $listaFiltrada[] = $s;
-            }
-        }
-        return $listaFiltrada;
+        $suspensiones = Suspension::where('status', 1)->get();
+        
+        return $suspensiones;
     }
     public function create(Request $post)
     {
@@ -52,7 +45,7 @@ class SuspensionController extends Controller
     {
         try {
             $suspension = Suspension::findOrFail($id);
-            $vehiculos = $suspension->vehiculos;
+            $suspension->vehiculos;
             return $suspension;
         } catch (QueryException $e) {
             return "Bad Request";

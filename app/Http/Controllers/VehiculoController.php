@@ -17,7 +17,13 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        return vehiculo::where('status', 1)->get();
+        $vehiculo = vehiculo::where('status', 1)->get();
+        $vehiculo->load('modelo');
+        $vehiculo->load('combustible');
+        $vehiculo->load('delantera_suspension');
+        $vehiculo->load('trasera_suspension');
+        // $vehiculo->load('sucursal');
+        return $vehiculo;
     }
 
     
@@ -34,6 +40,11 @@ class VehiculoController extends Controller
 
         try {
             $vehiculo = vehiculo::findOrFail($id);
+            $vehiculo->load('modelo');
+            $vehiculo->load('combustible');
+            $vehiculo->load('delantera_suspension');
+            $vehiculo->load('trasera_suspension');
+            // $vehiculo->load('sucursal');
 
             return $vehiculo;
         } catch (ModelNotFoundException $e) {

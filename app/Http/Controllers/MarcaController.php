@@ -12,16 +12,10 @@ class MarcaController extends Controller
 {
     public function index()
     {
-        $marcas = Marca::all();
-        $listaFiltrada = array();
-
-        foreach ($marcas as $m) {
-            $modelos = $m->modelos;
-            if ($m->estado == true) {
-                $listaFiltrada[] = $m;
-            }
-        }
-        return $listaFiltrada;
+        
+        $marcas = Marca::where('status', 1)->get();
+        $marcas->load('modelos');
+        return $marcas;
     }
 
 
@@ -54,7 +48,7 @@ class MarcaController extends Controller
     {
         try {
             $marca = Marca::findOrFail($id);
-            $modelos = $marca->modelos;
+            $marca->modelos;
             return $marca;
         } catch (QueryException $e) {
             return "Bad Request";
