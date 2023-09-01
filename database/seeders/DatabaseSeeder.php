@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProveedorSeeder::class);
         $this->call(VendedorSeeder::class);
 
-        $this->call(VendedorSeeder::class);
-
         $this->call(PersonaSeeder::class);
 
         \App\Models\Sucursal::factory(10)->create();
