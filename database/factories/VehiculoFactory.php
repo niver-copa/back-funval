@@ -24,6 +24,7 @@ class VehiculoFactory extends Factory
         
         return [
             'modelo_id'=> Modelo::inRandomOrder()->first()->id,
+            'precio'=> fake()->numberBetween(20000, 80000),
             'combustible_id'=> Combustible::inRandomOrder()->first()->id,
             'potencia'=> fake()->numberBetween(109, 6000),
             'torque_maximo'=> fake()->numberBetween(141, 4200),

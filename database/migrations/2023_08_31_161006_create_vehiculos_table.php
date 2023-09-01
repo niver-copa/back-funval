@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('modelo_id');
+            $table->float('precio');
             $table->unsignedBigInteger('combustible_id');
             $table->string('potencia');
             $table->string('torque_maximo');
