@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +18,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(ClientesController::class)->group(function(){
-    Route::get('clientes', "show");
-});

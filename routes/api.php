@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(ClienteController::class)->group(function(){
+    Route::get('cliente', "show");
     Route::post('create', "create");
     Route::put('destroy', "destroy");
     Route::put('update', "update");
