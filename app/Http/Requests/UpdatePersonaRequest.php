@@ -33,7 +33,7 @@ class UpdatePersonaRequest extends FormRequest
             'direccion' => 'string',
             'codigo_postal' => 'string',
             'pais' => 'string',
-            'status' => 'boolean|max:1',
+            'state' => 'boolean|max:1',
         ];
     }
 }
