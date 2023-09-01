@@ -80,7 +80,7 @@ class VendedorController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage ..
      *
      * @param  \App\Models\Vendedor  $vendedor
      * @return \Illuminate\Http\Response
