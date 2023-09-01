@@ -3,6 +3,7 @@
 use App\Http\Controllers\PersonaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProveedorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::controller(PersonaController::class)->group(function(){
     Route::get('/personas', 'index');
     Route::put('/crear-persona', 'store');
@@ -26,3 +28,10 @@ Route::controller(PersonaController::class)->group(function(){
     Route::post('/persona/{id}', 'update');
     Route::post('/persona/{id}', 'destroy');
 });
+
+Route::get('/proveedores', [ProveedorController::class, 'show']);
+Route::get('/proveedores/{id}', [ProveedorController::class, 'getById']);
+Route::post('/proveedores/new', [ProveedorController::class, 'new']);
+Route::put('/proveedores/edit/{id}', [ProveedorController::class, 'update']);
+Route::put('/proveedores/delete/{id}', [ProveedorController::class, 'delete']);
+
