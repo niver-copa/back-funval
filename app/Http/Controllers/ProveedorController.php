@@ -8,26 +8,20 @@ use App\Models\Proveedor;
 class ProveedorController extends Controller
 {
     public function show(){
-        $proveedores = Proveedor::where('activo', true)->get();        
-        if ($proveedores->count() > 0) {
-            return response()->json($proveedores);
-        } else {
-            return response()->json([
-                'message' => 'No records found'
-            ], 200);
-        }        
+
+        $proveedors = Proveedor::where('state', 1)->get();
+        foreach($proveedors as $proveedor){
+            $proveedor->persona;
+        }
+        return $proveedors;       
     }    
     
-    public function getById(int $id)
+    public function getById($id)
     {
-        $proveedor = Proveedor::where('id', $id)->get();
-        if ($proveedor->count() > 0) {
-            return response()->json($proveedor);
-        } else {
-            return response()->json([
-                'message' => 'No records found'
-            ], 200);
-        }        
+        $proveedor = Proveedor::find($id);
+        $proveedor->Persona;
+
+        return $proveedor;
     }
 
     public function new(Request $datosPost)

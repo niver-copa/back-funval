@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Persona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class ClienteFactory extends Factory
     public function definition()
     {
         return [
-            'persona_id' => 1,
+            'persona_id' => Persona::all()->random(),
             'referencias' => fake()->address(),
             'historial_de_compras' => fake()->date(),
             'nivel_de_satisfaccion' => fake()->lastName(),
