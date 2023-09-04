@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Proveedor extends Model
+class Modelo extends Model
 {
     use HasFactory;
-    public function persona():BelongsTo
+
+    protected $table = 'modelos';
+
+    public function marca(): BelongsTo
     {
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Marca::class, 'marca_id');
     }
 }

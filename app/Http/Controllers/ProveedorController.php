@@ -2,38 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Persona;
 use App\Models\Proveedor;
+use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
 {
     public function show(){
-        $proveedores = Proveedor::where('activo', true)->get();        
-        if ($proveedores->count() > 0) {
-            return response()->json($proveedores);
-        } else {
-            return response()->json([
-                'message' => 'No records found'
-            ], 200);
-        }        
+
+        $proveedors = Proveedor::where('state', 1)->get();
+        foreach($proveedors as $proveedor){
+            $proveedor->persona;
+        }
+        return $proveedors;       
     }    
     
-    public function getById(int $id)
+    public function getById($id)
     {
-        $proveedor = Proveedor::where('id', $id)->get();
-        if ($proveedor->count() > 0) {
-            return response()->json($proveedor);
-        } else {
-            return response()->json([
-                'message' => 'No records found'
-            ], 200);
-        }        
+        $proveedor = Proveedor::find($id);
+        $proveedor->Persona;
+
+        return $proveedor;
     }
 
     public function new(Request $datosPost)
     {
+        $nuevaPersona = new Persona();
+
+        $nuevaPersona->nombre = $datosPost->nombre;
+        $nuevaPersona->apellidos = $datosPost->apellidos;
+        $nuevaPersona->telefono = $datosPost->telefono;
+        $nuevaPersona->sexo = $datosPost->sexo;
+        $nuevaPersona->fecha_nacimiento = $datosPost->fecha_nacimiento;
+        $nuevaPersona->documento_identificacion = $datosPost->documento_identificacion;
+        $nuevaPersona->direccion = $datosPost->direccion;
+        $nuevaPersona->codigo_postal = $datosPost->codigo_postal;
+        $nuevaPersona->pais = $datosPost->pais;
+        $nuevaPersona->state = $datosPost->state;
+
+        $nuevaPersona->save();
+            
         $nuevo = new Proveedor();
-        $nuevo->persona_id = $datosPost->persona_id;
+        $persona_id = $nuevaPersona->id;
+        $nuevo->persona_id=$persona_id;        
         $nuevo->nombre_empresa = $datosPost->nombre_empresa;
         $nuevo->telefono_empresa = $datosPost->telefono_empresa;
         $nuevo->email_empresa = $datosPost->email_empresa;

@@ -13,11 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vendedors', function (Blueprint $table) {
+        Schema::create('modelos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('persona_id');
-            $table->foreign('persona_id')->references('id')->on('personas');
-            $table->char('state', 1);
+            $table->string('nombre');
+            $table->unsignedBigInteger('marca_id');
+
+           $table->tinyInteger('status')->default(1);
+
+
+            $table->foreign('marca_id')->references('id')->on('marcas');
+
             $table->timestamps();
         });
     }
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendedors');
+        Schema::dropIfExists('modelos');
     }
 };

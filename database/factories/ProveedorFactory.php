@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Persona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class ProveedorFactory extends Factory
     public function definition()
     {
         return [
-            'persona_id' => 1,
+            'persona_id' => Persona::all()->random(),
             'nombre_empresa' => fake()->company(),
             'telefono_empresa' => fake()->phoneNumber(),
             'email_empresa' => fake()->email(),
