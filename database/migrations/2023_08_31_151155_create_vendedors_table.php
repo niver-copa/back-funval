@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nombre_empresa');
             $table->string('telefono_empresa');
             $table->string('direccion_empresa');
-            $table->char('state', 1);
+            $table->char('state',1)->default(1);
             $table->timestamps();
         });
     }

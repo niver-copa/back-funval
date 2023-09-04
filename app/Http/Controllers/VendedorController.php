@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Persona;
 use App\Models\Vendedor;
 use Exception;
 use Illuminate\Http\Request;
@@ -40,20 +41,36 @@ class VendedorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $datosPost)
     {
-        $request->validate([
+        /* $datosPost->validate([
             'persona_id' => ['required', 'string'],
-        ]);
+        ]); */
 
-        $nuevoVendedor = new Vendedor();
-        $nuevoVendedor->persona_id = $request->persona_id;
-        $nuevoVendedor->nombre_empresa = $request->nombre_empresa;
-        $nuevoVendedor->telefono_empresa = $request->telefono_empresa;
-        $nuevoVendedor->direccion_empresa = $request->direccion_empresa;
-        $nuevoVendedor->state = 1;
-        $nuevoVendedor->save();
-        return "Vendedor Registrado Correctamente.";
+        $nuevaPersona = new Persona();
+
+        $nuevaPersona->nombre = $datosPost->nombre;
+        $nuevaPersona->apellidos = $datosPost->apellidos;
+        $nuevaPersona->telefono = $datosPost->telefono;
+        $nuevaPersona->sexo = $datosPost->sexo;
+        $nuevaPersona->fecha_nacimiento = $datosPost->fecha_nacimiento;
+        $nuevaPersona->documento_identificacion = $datosPost->documento_identificacion;
+        $nuevaPersona->direccion = $datosPost->direccion;
+        $nuevaPersona->codigo_postal = $datosPost->codigo_postal;
+        $nuevaPersona->pais = $datosPost->pais;
+        $nuevaPersona->state = $datosPost->state;
+
+        $nuevaPersona->save();
+            
+        $nuevo = new Vendedor();
+        $persona_id = $nuevaPersona->id;
+        $nuevo->persona_id=$persona_id;        
+        $nuevo->nombre_empresa = $datosPost->nombre_empresa;
+        $nuevo->telefono_empresa = $datosPost->telefono_empresa;
+        $nuevo->direccion_empresa = $datosPost->direccion_empresa;
+        $nuevo->save();
+        return "Este es el return del metodo create";
+        return "El Vendedor se registro exitosamente";
     }
 
     /**
