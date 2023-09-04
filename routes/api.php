@@ -34,7 +34,7 @@ Route::controller(PersonaController::class)->group(function () {
     Route::put('/crear-persona', 'store');
     Route::get('/persona/{id}', 'show');
     Route::post('/persona/{id}', 'update');
-    Route::post('/persona/{id}', 'destroy');
+    Route::put('/persona/{id}', 'destroy');
 });
 
 Route::get('/vendedor', [VendedorController::class, 'index']);
