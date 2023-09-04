@@ -16,7 +16,11 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Cliente::where('state', 1)->get();
+        foreach($clientes as $cliente){
+            $cliente->persona;
+        }
+        return $clientes;
     }
 
     /**
@@ -108,11 +112,13 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function show(Cliente $clientes)
+    public function show($id)
     {
-        $clientes = Cliente::all();
         
-        return $clientes;
+        $cliente = Cliente::find($id);
+        $cliente->Persona;
+
+        return $cliente;
     }
 
     /**

@@ -44,7 +44,8 @@ Route::put('/vendedor/{id}', [VendedorController::class, 'update']);
 Route::delete('/vendedor/{id}', [VendedorController::class, 'delete']);
 
 Route::controller(ClienteController::class)->group(function () {
-    Route::get('cliente', "show");
+    Route::get('cliente', "index");
+    Route::get('cliente/{id}', "show");
     Route::post('cliente/create', "create");
     Route::put('cliente/destroy', "destroy");
     Route::put('cliente/update', "update");
