@@ -19,6 +19,9 @@ class VendedorFactory extends Factory
     {
         return [
             'persona_id' => Persona::all()->random(),
+            'nombre_empresa' => fake()->company(),
+            'telefono_empresa' => fake()->phoneNumber(),
+            'direccion_empresa' => fake()->address(),
             'state' => "1",
         ];
     }

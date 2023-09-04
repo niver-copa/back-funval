@@ -17,4 +17,8 @@ class Persona extends Model
     {
         return $this->hasOne(Proveedor::class);
     }
+    public function vendedor():HasOne
+    {
+        return $this->hasOne(Vendedor::class);
+    }
 }
