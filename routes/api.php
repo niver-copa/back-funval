@@ -30,10 +30,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::controller(PersonaController::class)->group(function () {
-    Route::get('/persona', 'index');
-    Route::put('/crear-persona', 'store');
+    Route::get('/personas', 'index');
+    Route::post('/crear-persona', 'store');
     Route::get('/persona/{id}', 'show');
-    Route::post('/persona/{id}', 'update');
+    Route::put('/persona/{id}', 'update');
     Route::put('/persona/{id}', 'destroy');
 });
 
