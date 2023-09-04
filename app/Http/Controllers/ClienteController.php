@@ -148,7 +148,6 @@ class ClienteController extends Controller
                 if($request->referencias){
                     if(is_string($request->Nivel_de_satisfacción)){
                         $edita ->referencias = $request->referencias;
-                        return "Referencias actualizadas correctamente";
                     }else{
                         return "Las referencias deben ser una cadena de texto";
                     }
@@ -157,7 +156,6 @@ class ClienteController extends Controller
                 if($request->historial_de_compras){
                     if(is_string($request->historial_de_compras)){
                         $edita ->historial_de_compras = $request->historial_de_compras;
-                        return "Historial de compras actualizadas correctamente";
                     }else{
                         return "El Historial de compras debe ser una cadena de texto";
                     }
@@ -165,7 +163,6 @@ class ClienteController extends Controller
                 if($request->nivel_de_satisfacción){
                     if(is_string($request->nivel_de_satisfacción)){
                         $edita ->nivel_de_satisfacción = $request->nivel_de_satisfacción;
-                        return "Nivel de satisfacción actualizadas correctamente";
                     }else{
                         return "El Nivel de satisfacción debe ser una cadena de texto";
                     }
@@ -174,7 +171,6 @@ class ClienteController extends Controller
                 if($request->comentarios_observaciones){
                     if(is_string($request->comentarios_observaciones)){
                         $edita ->comentarios_observaciones = $request->comentarios_observaciones;
-                        return "Comentarios u observaciones actualizados correctamente";
                     }else{
                         return "Comentarios u observaciones debe ser una cadena de texto";
                     }

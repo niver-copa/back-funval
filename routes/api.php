@@ -12,6 +12,7 @@ use App\Http\Controllers\ModeloController;
 use App\Http\Controllers\SuspensionController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+///////////////////// EXTRA ///////////////////
 Route::controller(PersonaController::class)->group(function () {
     Route::get('/personas', 'index');
     Route::post('/crear-persona', 'store');
@@ -37,24 +38,34 @@ Route::controller(PersonaController::class)->group(function () {
     Route::put('/persona/{id}', 'destroy');
 });
 
+///////////////////// MAIN ///////////////////////////
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('user', "index");
+    Route::post('user/login', "login");
+    Route::post('user/create', "create");
+    Route::put('user/delete/{id}', "delete");
+
+});
+
 Route::get('/vendedor', [VendedorController::class, 'index']);
 Route::get('/vendedor/{id}', [VendedorController::class, 'getById']);
 Route::post('/vendedor/create', [VendedorController::class, 'create']);
 Route::put('/vendedor/update/{id}', [VendedorController::class, 'update']);
-Route::put('/vendedor/destroy/{id}', [VendedorController::class, 'delete']);
+Route::put('/vendedor/delete/{id}', [VendedorController::class, 'delete']);
 
 Route::controller(ClienteController::class)->group(function () {
     Route::get('cliente', "index");
     Route::get('cliente/{id}', "show");
     Route::post('cliente/create', "create");
-    Route::put('cliente/destroy', "destroy");
-    Route::put('cliente/update', "update");
+    Route::put('cliente/delete/{id}', "destroy");
+    Route::put('cliente/update/{id}', "update");
 });
 
 Route::get('/proveedores', [ProveedorController::class, 'show']);
 Route::get('/proveedores/{id}', [ProveedorController::class, 'getById']);
-Route::post('/proveedores/new', [ProveedorController::class, 'new']);
-Route::put('/proveedores/edit/{id}', [ProveedorController::class, 'update']);
+Route::post('/proveedores/create', [ProveedorController::class, 'new']);
+Route::put('/proveedores/update/{id}', [ProveedorController::class, 'update']);
 Route::put('/proveedores/delete/{id}', [ProveedorController::class, 'delete']);
 
 Route::prefix('marcas')->group(function () {
