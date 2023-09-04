@@ -16,7 +16,7 @@ class PersonaController extends Controller
 
     public function store(StorePersonaRequest $request)
     {
-        $nuevaPersona = new Persona;
+        $nuevaPersona = new Persona();
 
         $nuevaPersona->nombre = $request->nombre;
         $nuevaPersona->apellidos = $request->apellidos;
