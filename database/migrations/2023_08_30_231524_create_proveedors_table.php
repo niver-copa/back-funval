@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('proveedors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('persona_id');
+            $table->foreign('persona_id')->references('id')->on('personas');
             $table->string('nombre_empresa');
             $table->string('telefono_empresa');
             $table->string('direccion_empresa');
