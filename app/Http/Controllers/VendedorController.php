@@ -15,7 +15,11 @@ class VendedorController extends Controller
      */
     public function index()
     {
-        return Vendedor::where('state', '=', 1)->get();
+        $vendedors = Vendedor::where('state', 1)->get();
+        foreach($vendedors as $vendedor){
+            $vendedor->persona;
+        }
+        return $vendedors; 
     }
 
     public function getById($id)
@@ -26,7 +30,10 @@ class VendedorController extends Controller
         if (Vendedor::find($id)->state == 0) {
             return "El Vendedor N° " . $id . " esta desactivado.";
         }
-        return Vendedor::find($id);
+        $vendedor = Vendedor::find($id);
+        $vendedor->Persona;
+
+        return $vendedor;
     }
     /**
      * Show the form for creating a new resource.
@@ -41,6 +48,9 @@ class VendedorController extends Controller
 
         $nuevoVendedor = new Vendedor();
         $nuevoVendedor->persona_id = $request->persona_id;
+        $nuevoVendedor->nombre_empresa = $request->nombre_empresa;
+        $nuevoVendedor->telefono_empresa = $request->telefono_empresa;
+        $nuevoVendedor->direccion_empresa = $request->direccion_empresa;
         $nuevoVendedor->state = 1;
         $nuevoVendedor->save();
         return "Vendedor Registrado Correctamente.";
@@ -64,6 +74,9 @@ class VendedorController extends Controller
             $actualizarVendedor = Vendedor::find($id);
 
             $actualizarVendedor->persona_id = $request->persona_id;
+            $actualizarVendedor->nombre_empresa = $request->nombre_empresa;
+            $actualizarVendedor->telefono_empresa = $request->telefono_empresa;
+            $actualizarVendedor->direccion_empresa = $request->direccion_empresa;
 
             if ($request->state == 1 || $request->state == 0) {
                 $actualizarVendedor->state = $request->state;

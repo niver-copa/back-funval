@@ -30,7 +30,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::controller(PersonaController::class)->group(function () {
-    Route::get('/personas', 'index');
+    Route::get('/persona', 'index');
     Route::put('/crear-persona', 'store');
     Route::get('/persona/{id}', 'show');
     Route::post('/persona/{id}', 'update');
@@ -40,8 +40,8 @@ Route::controller(PersonaController::class)->group(function () {
 Route::get('/vendedor', [VendedorController::class, 'index']);
 Route::get('/vendedor/{id}', [VendedorController::class, 'getById']);
 Route::post('/vendedor', [VendedorController::class, 'create']);
-Route::put('/vendedor/{id}', [VendedorController::class, 'update']);
-Route::delete('/vendedor/{id}', [VendedorController::class, 'delete']);
+Route::put('/vendedor/update/{id}', [VendedorController::class, 'update']);
+Route::put('/vendedor/destroy/{id}', [VendedorController::class, 'delete']);
 
 Route::controller(ClienteController::class)->group(function () {
     Route::get('cliente', "index");
@@ -56,6 +56,7 @@ Route::get('/proveedores/{id}', [ProveedorController::class, 'getById']);
 Route::post('/proveedores/new', [ProveedorController::class, 'new']);
 Route::put('/proveedores/edit/{id}', [ProveedorController::class, 'update']);
 Route::put('/proveedores/delete/{id}', [ProveedorController::class, 'delete']);
+
 Route::prefix('marcas')->group(function () {
     Route::get('/', [MarcaController::class, 'index']);
     Route::get('/{id}', [MarcaController::class, 'show']);
