@@ -45,9 +45,9 @@ Route::delete('/vendedor/{id}', [VendedorController::class, 'delete']);
 
 Route::controller(ClienteController::class)->group(function () {
     Route::get('cliente', "show");
-    Route::post('create', "create");
-    Route::put('destroy', "destroy");
-    Route::put('update', "update");
+    Route::post('cliente/create', "create");
+    Route::put('cliente/destroy', "destroy");
+    Route::put('cliente/update', "update");
 });
 
 Route::get('/proveedores', [ProveedorController::class, 'show']);

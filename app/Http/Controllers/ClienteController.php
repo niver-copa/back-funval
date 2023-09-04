@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Persona;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -26,12 +27,32 @@ class ClienteController extends Controller
     public function create(Request $body)
     {
         try {
-            $nuevaPersona = new Cliente();
+
+            $nuevaPersona = new Persona();
+
+            $nuevaPersona->nombre = $body->nombre;
+            $nuevaPersona->apellidos = $body->apellidos;
+            $nuevaPersona->telefono = $body->telefono;
+            $nuevaPersona->sexo = $body->sexo;
+            $nuevaPersona->fecha_nacimiento = $body->fecha_nacimiento;
+            $nuevaPersona->documento_identificacion = $body->documento_identificacion;
+            $nuevaPersona->direccion = $body->direccion;
+            $nuevaPersona->codigo_postal = $body->codigo_postal;
+            $nuevaPersona->pais = $body->pais;
+            $nuevaPersona->state = $body->state;
+    
+            $nuevaPersona->save();
+            
+            $nuevaCliente = new Cliente();
+
+            $persona_id = $nuevaPersona->id;
+            $nuevaCliente->persona_id=$persona_id;
+            
             
             if($body->referencias){
                 if(is_string($body->referencias)){
-                    $nuevaPersona ->referencias = $body->referencias;
-                    return "Referencias actualizadas correctamente";
+                    $nuevaCliente ->referencias = $body->referencias;
+                    
                 }else{
                     return "Las referencias deben ser una cadena de texto";
                 }
@@ -39,35 +60,31 @@ class ClienteController extends Controller
             }
             if($body->historial_de_compras){
                 if(is_string($body->historial_de_compras)){
-                    $nuevaPersona ->historial_de_compras = $body->historial_de_compras;
-                    return "Historial de compras actualizadas correctamente";
+                    $nuevaCliente ->historial_de_compras = $body->historial_de_compras;
+                    
                 }else{
                     return "El Historial de compras debe ser una cadena de texto";
                 }
             }
-            if($body->Nivel_de_satisfacción){
-                if(is_string($body->Nivel_de_satisfacción)){
-                    $nuevaPersona ->Nivel_de_satisfacción = $body->Nivel_de_satisfacción;
-                    return "Nivel de satisfacción actualizadas correctamente";
+            if($body->nivel_de_satisfaccion){
+                if(is_string($body->nivel_de_satisfaccion)){
+                    $nuevaCliente ->nivel_de_satisfaccion = $body->nivel_de_satisfaccion;
+                    
                 }else{
                     return "El Nivel de satisfacción debe ser una cadena de texto";
                 }
                 
             }
-            if($body->Comentarios_observaciones){
-                $nuevaPersona ->Comentarios_observaciones = $body->Comentarios_observaciones;
-            }
-            if($body->Comentarios_observaciones){
-                if(is_string($body->Comentarios_observaciones)){
-                    $nuevaPersona ->Comentarios_observaciones = $body->Comentarios_observaciones;
-                    return "Comentarios u observaciones actualizados correctamente";
+            if($body->comentarios_observaciones){
+                if(is_string($body->comentarios_observaciones)){
+                    $nuevaCliente ->comentarios_observaciones = $body->comentarios_observaciones;
+                    
                 }else{
                     return "Comentarios u observaciones debe ser una cadena de texto";
                 }
                 
             }
-        
-            $nuevaPersona->save();
+            $nuevaCliente->save();
             return "El Cleinte fue agregado correctamente";
         } catch (Exception $e) {
             return $e->getMessage();
