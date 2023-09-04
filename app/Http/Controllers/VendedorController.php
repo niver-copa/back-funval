@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Persona;
 use App\Models\Vendedor;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,7 +16,11 @@ class VendedorController extends Controller
      */
     public function index()
     {
-        return Vendedor::where('state', '=', 1)->get();
+        $vendedors = Vendedor::where('state', 1)->get();
+        foreach($vendedors as $vendedor){
+            $vendedor->persona;
+        }
+        return $vendedors; 
     }
 
     public function getById($id)
@@ -26,24 +31,46 @@ class VendedorController extends Controller
         if (Vendedor::find($id)->state == 0) {
             return "El Vendedor N° " . $id . " esta desactivado.";
         }
-        return Vendedor::find($id);
+        $vendedor = Vendedor::find($id);
+        $vendedor->Persona;
+
+        return $vendedor;
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $datosPost)
     {
-        $request->validate([
+        /* $datosPost->validate([
             'persona_id' => ['required', 'string'],
-        ]);
+        ]); */
 
-        $nuevoVendedor = new Vendedor();
-        $nuevoVendedor->persona_id = $request->persona_id;
-        $nuevoVendedor->state = 1;
-        $nuevoVendedor->save();
-        return "Vendedor Registrado Correctamente.";
+        $nuevaPersona = new Persona();
+
+        $nuevaPersona->nombre = $datosPost->nombre;
+        $nuevaPersona->apellidos = $datosPost->apellidos;
+        $nuevaPersona->telefono = $datosPost->telefono;
+        $nuevaPersona->sexo = $datosPost->sexo;
+        $nuevaPersona->fecha_nacimiento = $datosPost->fecha_nacimiento;
+        $nuevaPersona->documento_identificacion = $datosPost->documento_identificacion;
+        $nuevaPersona->direccion = $datosPost->direccion;
+        $nuevaPersona->codigo_postal = $datosPost->codigo_postal;
+        $nuevaPersona->pais = $datosPost->pais;
+        $nuevaPersona->state = $datosPost->state;
+
+        $nuevaPersona->save();
+            
+        $nuevo = new Vendedor();
+        $persona_id = $nuevaPersona->id;
+        $nuevo->persona_id=$persona_id;        
+        $nuevo->nombre_empresa = $datosPost->nombre_empresa;
+        $nuevo->telefono_empresa = $datosPost->telefono_empresa;
+        $nuevo->direccion_empresa = $datosPost->direccion_empresa;
+        $nuevo->save();
+        return "Este es el return del metodo create";
+        return "El Vendedor se registro exitosamente";
     }
 
     /**
@@ -64,6 +91,9 @@ class VendedorController extends Controller
             $actualizarVendedor = Vendedor::find($id);
 
             $actualizarVendedor->persona_id = $request->persona_id;
+            $actualizarVendedor->nombre_empresa = $request->nombre_empresa;
+            $actualizarVendedor->telefono_empresa = $request->telefono_empresa;
+            $actualizarVendedor->direccion_empresa = $request->direccion_empresa;
 
             if ($request->state == 1 || $request->state == 0) {
                 $actualizarVendedor->state = $request->state;
