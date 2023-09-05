@@ -50,7 +50,7 @@ class ProveedorController extends Controller
         $nuevo->email_empresa = $datosPost->email_empresa;
         $nuevo->direccion_empresa = $datosPost->direccion_empresa;
         $nuevo->save();
-        return "El proveedor se registro exitosamente";
+        return  redirect("/registros");
     }      
     
     public function update(Request $request, int $id)

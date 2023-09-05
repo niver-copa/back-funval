@@ -62,11 +62,11 @@ Route::controller(ClienteController::class)->group(function () {
     Route::put('cliente/update/{id}', "update");
 });
 
-Route::get('/proveedores', [ProveedorController::class, 'show']);
-Route::get('/proveedores/{id}', [ProveedorController::class, 'getById']);
-Route::post('/proveedores/create', [ProveedorController::class, 'new']);
-Route::put('/proveedores/update/{id}', [ProveedorController::class, 'update']);
-Route::put('/proveedores/delete/{id}', [ProveedorController::class, 'delete']);
+Route::get('/proveedor', [ProveedorController::class, 'show']);
+Route::get('/proveedor/{id}', [ProveedorController::class, 'getById']);
+Route::post('/proveedor/create', [ProveedorController::class, 'new']);
+Route::put('/proveedor/update/{id}', [ProveedorController::class, 'update']);
+Route::put('/proveedor/delete/{id}', [ProveedorController::class, 'delete']);
 
 Route::prefix('marcas')->group(function () {
     Route::get('/', [MarcaController::class, 'index']);

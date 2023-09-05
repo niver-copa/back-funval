@@ -89,7 +89,8 @@ class ClienteController extends Controller
                 
             }
             $nuevaCliente->save();
-            return "El Cliente fue agregado correctamente";
+           
+            return  redirect("/registros");
         } catch (Exception $e) {
             return $e->getMessage();
         }
