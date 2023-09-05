@@ -40,8 +40,8 @@ class VehiculoFactory extends Factory
             'traccion'=> fake()->word(),
             'delantera_suspension_id'=> Suspension::inRandomOrder()->first()->id,
             'trasera_suspension_id'=> Suspension::inRandomOrder()->first()->id,
-            'frenos_delanteros'=> fake()->name(),
-            'color'=> fake()->name(),
+            'frenos_delanteros'=> fake()->word(),
+            'color'=> fake()->colorName(),
             'anio'=> fake()->year(),
             'descripcion'=> fake()->word(),
             'sucursal_id'=> Sucursal::inRandomOrder()->first()->id
