@@ -17,7 +17,7 @@ class CajaFactory extends Factory
     public function definition()
     {
         return [
-            'tipo' => fake()->word(),
+            
         ];
     }
 }
