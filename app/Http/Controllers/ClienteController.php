@@ -43,7 +43,7 @@ class ClienteController extends Controller
             $nuevaPersona->direccion = $body->direccion;
             $nuevaPersona->codigo_postal = $body->codigo_postal;
             $nuevaPersona->pais = $body->pais;
-            $nuevaPersona->state = $body->state;
+            $nuevaPersona->state = 1;
     
             $nuevaPersona->save();
             

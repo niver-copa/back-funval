@@ -27,7 +27,7 @@ class PersonaController extends Controller
         $nuevaPersona->direccion = $request->direccion;
         $nuevaPersona->codigo_postal = $request->codigo_postal;
         $nuevaPersona->pais = $request->pais;
-        $nuevaPersona->state = $request->state;
+        $nuevaPersona->state = 1;
 
         $nuevaPersona->save();
 

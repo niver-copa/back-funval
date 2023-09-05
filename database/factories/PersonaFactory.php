@@ -19,7 +19,6 @@ class PersonaFactory extends Factory
     {
         return [
             'nombre' => fake()->firstName(),
-            'user_id' => User::all()->random(),
             'apellidos' => fake()->lastName(),
             'telefono' => fake()->phoneNumber(),
             'sexo' => fake()->word(),
