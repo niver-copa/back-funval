@@ -43,7 +43,7 @@ class ClienteController extends Controller
             $nuevaPersona->direccion = $body->direccion;
             $nuevaPersona->codigo_postal = $body->codigo_postal;
             $nuevaPersona->pais = $body->pais;
-            $nuevaPersona->state = 1;
+            $nuevaPersona->state = "1";
     
             $nuevaPersona->save();
             
@@ -89,7 +89,7 @@ class ClienteController extends Controller
                 
             }
             $nuevaCliente->save();
-            return "El Cleinte fue agregado correctamente";
+            return "El Cliente fue agregado correctamente";
         } catch (Exception $e) {
             return $e->getMessage();
         }
