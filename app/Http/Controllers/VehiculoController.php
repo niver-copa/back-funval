@@ -18,7 +18,7 @@ class VehiculoController extends Controller
     public function index()
     {
         $vehiculo = vehiculo::where('status', 1)->get();
-        $vehiculo->load('modelo');
+        $vehiculo->load('modelo.marca');
         $vehiculo->load('combustible');
         $vehiculo->load('delantera_suspension');
         $vehiculo->load('trasera_suspension');
@@ -40,7 +40,7 @@ class VehiculoController extends Controller
 
         try {
             $vehiculo = vehiculo::findOrFail($id);
-            $vehiculo->load('modelo');
+            $vehiculo->load('modelo.marca');
             $vehiculo->load('combustible');
             $vehiculo->load('delantera_suspension');
             $vehiculo->load('trasera_suspension');
