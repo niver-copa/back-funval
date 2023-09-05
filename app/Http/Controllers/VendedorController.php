@@ -17,10 +17,10 @@ class VendedorController extends Controller
     public function index()
     {
         $vendedors = Vendedor::where('state', 1)->get();
-        foreach($vendedors as $vendedor){
+        foreach ($vendedors as $vendedor) {
             $vendedor->persona;
         }
-        return $vendedors; 
+        return $vendedors;
     }
 
     public function getById($id)
@@ -61,16 +61,16 @@ class VendedorController extends Controller
         $nuevaPersona->state = "1";
 
         $nuevaPersona->save();
-            
+
         $nuevo = new Vendedor();
         $persona_id = $nuevaPersona->id;
-        $nuevo->persona_id=$persona_id;        
+        $nuevo->persona_id = $persona_id;
         $nuevo->nombre_empresa = $datosPost->nombre_empresa;
         $nuevo->telefono_empresa = $datosPost->telefono_empresa;
         $nuevo->direccion_empresa = $datosPost->direccion_empresa;
         $nuevo->save();
 
-        return  redirect("/registros");
+        return  redirect("http://localhost:5175/registros");
     }
 
     /**

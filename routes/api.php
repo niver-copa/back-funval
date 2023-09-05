@@ -45,7 +45,6 @@ Route::controller(UserController::class)->group(function () {
     Route::post('user/login', "login");
     Route::post('user/create', "create");
     Route::put('user/delete/{id}', "delete");
-
 });
 
 Route::get('/vendedor', [VendedorController::class, 'index']);
