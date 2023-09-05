@@ -70,7 +70,7 @@ class VendedorController extends Controller
         $nuevo->direccion_empresa = $datosPost->direccion_empresa;
         $nuevo->save();
 
-        return "El Vendedor se registro exitosamente";
+        return  redirect("/registros");
     }
 
     /**
