@@ -22,6 +22,16 @@ class MarcaController extends Controller
         return $listaFiltrada;
     }
 
+    public function indexf()
+    {
+        $marcas = Marca::where('status', 1)->get();
+
+        
+       
+        return $marcas;
+    }
+
+
 
     public function create(Request $post)
     {
