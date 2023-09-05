@@ -45,7 +45,7 @@ class MarcaController extends Controller
 
             $nuevaMarca->save();
 
-            return "El registro se creo correctamente";
+            return redirect('http://localhost:5173/marcas');
         } catch (Exception $e) {
             return "Bad Request";
         }
