@@ -8,15 +8,16 @@ use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
 {
-    public function show(){
+    public function show()
+    {
 
         $proveedors = Proveedor::where('state', 1)->get();
-        foreach($proveedors as $proveedor){
+        foreach ($proveedors as $proveedor) {
             $proveedor->persona;
         }
-        return $proveedors;       
-    }    
-    
+        return $proveedors;
+    }
+
     public function getById($id)
     {
         $proveedor = Proveedor::find($id);
@@ -41,18 +42,18 @@ class ProveedorController extends Controller
         $nuevaPersona->state = "1";
 
         $nuevaPersona->save();
-            
+
         $nuevo = new Proveedor();
         $persona_id = $nuevaPersona->id;
-        $nuevo->persona_id=$persona_id;        
+        $nuevo->persona_id = $persona_id;
         $nuevo->nombre_empresa = $datosPost->nombre_empresa;
         $nuevo->telefono_empresa = $datosPost->telefono_empresa;
         $nuevo->email_empresa = $datosPost->email_empresa;
         $nuevo->direccion_empresa = $datosPost->direccion_empresa;
         $nuevo->save();
-        return  redirect("/registros");
-    }      
-    
+        return  redirect("http://localhost:5175/registros");
+    }
+
     public function update(Request $request, int $id)
     {
         $proveedor = Proveedor::find($id);
@@ -63,13 +64,13 @@ class ProveedorController extends Controller
             $proveedor->email_empresa = $request->email_empresa;
             $proveedor->direccion_empresa = $request->direccion_empresa;
             $proveedor->save();
-            
-            return "Proveedor modificado !! ";            
+
+            return "Proveedor modificado !! ";
         } else {
             return response()->json([
                 'message' => 'No records found'
             ], 200);
-        }    
+        }
     }
 
     public function delete(int $id)
@@ -78,12 +79,12 @@ class ProveedorController extends Controller
         if ($proveedor) {
             $proveedor->activo = 0;
             $proveedor->save();
-            
-            return "Proveedor borrado !! ";          
+
+            return "Proveedor borrado !! ";
         } else {
             return response()->json([
                 'message' => 'No records found'
             ], 200);
-        }    
-    }      
+        }
+    }
 }
