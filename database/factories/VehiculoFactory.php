@@ -24,6 +24,7 @@ class VehiculoFactory extends Factory
         
         return [
             'modelo_id'=> Modelo::inRandomOrder()->first()->id,
+            'matricula' => fake()->unique()->word(),
             'precio'=> fake()->numberBetween(20000, 80000),
             'combustible_id'=> Combustible::inRandomOrder()->first()->id,
             'potencia'=> fake()->numberBetween(109, 6000),
@@ -42,6 +43,7 @@ class VehiculoFactory extends Factory
             'frenos_delanteros'=> fake()->name(),
             'color'=> fake()->name(),
             'anio'=> fake()->year(),
+            'descripcion'=> fake()->word(),
             'sucursal_id'=> Sucursal::inRandomOrder()->first()->id
            
         ];

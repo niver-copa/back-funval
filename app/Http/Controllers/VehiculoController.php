@@ -67,8 +67,10 @@ class VehiculoController extends Controller
                 'combustible_id'=> 'required|numeric',
                 'potencia'=> 'required|numeric',
                 'torque_maximo'=> 'required|numeric',
+                'precio'=> 'required|numeric',
                 'ubicacion'=> 'required',
                 'cilindros'=> 'required',
+                'matricula'=> 'required',
                 'diametro_carrera'=> 'required',
                 'cilindraje'=>'required',
                 'compresion'=> 'required|numeric',
@@ -81,6 +83,7 @@ class VehiculoController extends Controller
                 'frenos_delanteros'=> 'required',
                 'color'=> 'required',
                 'anio'=> 'required|numeric',
+                'descripcion'=> 'required',
                 'sucursal_id'=> 'required|exists:sucursales,id',
             ]);
     
@@ -119,7 +122,9 @@ class VehiculoController extends Controller
                 'combustible_id'=> 'required|numeric',
                 'potencia'=> 'required|numeric',
                 'torque_maximo'=> 'required|numeric',
+                'precio'=> 'required|numeric',
                 'ubicacion'=> 'required',
+                'matricula'=> 'required',
                 'cilindros'=> 'required',
                 'diametro_carrera'=> 'required',
                 'cilindraje'=>'required',

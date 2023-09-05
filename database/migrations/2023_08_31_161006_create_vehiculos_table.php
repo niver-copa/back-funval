@@ -19,6 +19,7 @@ return new class extends Migration
             $table->float('precio');
             $table->unsignedBigInteger('combustible_id');
             $table->string('potencia');
+            $table->string('matricula')->unique();
             $table->string('torque_maximo');
             $table->string('ubicacion');
             $table->string('cilindros');
@@ -34,6 +35,7 @@ return new class extends Migration
             $table->string('frenos_delanteros');
             $table->string('color');
             $table->year('anio');
+            $table->text('descripcion');
             $table->unsignedBigInteger('sucursal_id');
 
             $table->tinyInteger('status')->default(1);
