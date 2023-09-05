@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('marcas')->group(function () {
     Route::get('/', [MarcaController::class, 'index']);
+    Route::get('/full', [MarcaController::class, 'indexf']);
     Route::get('/{id}', [MarcaController::class, 'show']);
     Route::post('/', [MarcaController::class, 'create']);
     Route::put('/{id}', [MarcaController::class, 'update']);
