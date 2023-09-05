@@ -33,6 +33,8 @@ Route::prefix('marcas')->group(function () {
     Route::delete('/{id}', [MarcaController::class, 'destroy']);
 });
 
+
+
 Route::prefix('modelos')->group(function () {
     Route::get('/', [ModeloController::class, 'index']);
     Route::get('/{id}', [ModeloController::class, 'show']);

@@ -12,18 +12,14 @@ class MarcaController extends Controller
 {
     public function index()
     {
-        $marcas = Marca::all();
-        $listaFiltrada = array();
+        $marcas = Marca::where('status', 1)->get();
 
-        foreach ($marcas as $m) {
-
-            $m->modelos;
-            if ($m->estado == true) {
-
-                $listaFiltrada[] = $m;
-            }
-        }
-        return $marcas;
+        $listaFiltrada = $marcas->filter(function ($marca) {
+            $marca->load('modelos');
+            return $marca->modelos->isNotEmpty();
+        })->values();
+       
+        return $listaFiltrada;
     }
 
 
@@ -45,9 +41,12 @@ class MarcaController extends Controller
 
             $nuevaMarca->save();
 
+
             return redirect('http://localhost:5173/marcas');
+
         } catch (Exception $e) {
-            return "Bad Request";
+           return redirect('http://localhost:5173/marcas');
+           
         }
     }
 

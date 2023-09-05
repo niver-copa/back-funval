@@ -17,7 +17,7 @@ class CombustibleFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => fake()->word(),
+           
             
         ];
     }
