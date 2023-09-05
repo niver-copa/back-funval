@@ -58,7 +58,7 @@ class VendedorController extends Controller
         $nuevaPersona->direccion = $datosPost->direccion;
         $nuevaPersona->codigo_postal = $datosPost->codigo_postal;
         $nuevaPersona->pais = $datosPost->pais;
-        $nuevaPersona->state = $datosPost->state;
+        $nuevaPersona->state = 1;
 
         $nuevaPersona->save();
             
@@ -69,7 +69,7 @@ class VendedorController extends Controller
         $nuevo->telefono_empresa = $datosPost->telefono_empresa;
         $nuevo->direccion_empresa = $datosPost->direccion_empresa;
         $nuevo->save();
-        return "Este es el return del metodo create";
+
         return "El Vendedor se registro exitosamente";
     }
 

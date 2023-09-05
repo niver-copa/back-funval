@@ -38,7 +38,7 @@ class ProveedorController extends Controller
         $nuevaPersona->direccion = $datosPost->direccion;
         $nuevaPersona->codigo_postal = $datosPost->codigo_postal;
         $nuevaPersona->pais = $datosPost->pais;
-        $nuevaPersona->state = $datosPost->state;
+        $nuevaPersona->state = 1;
 
         $nuevaPersona->save();
             
