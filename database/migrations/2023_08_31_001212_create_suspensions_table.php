@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('suspensiones', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo');
+            $table->string('tipo')->unique();
 
            $table->tinyInteger('status')->default(1);
 

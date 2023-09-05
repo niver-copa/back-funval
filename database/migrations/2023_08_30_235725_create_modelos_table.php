@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('modelos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->unsignedBigInteger('marca_id');
 
            $table->tinyInteger('status')->default(1);

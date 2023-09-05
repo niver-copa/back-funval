@@ -17,7 +17,7 @@ class MarcaFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => fake()->word(),
+            'nombre' => fake()->unique()->word(),
 
         ];
     }

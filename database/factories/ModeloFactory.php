@@ -18,7 +18,7 @@ class ModeloFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => fake()->word(),
+            'nombre' => fake()->unique()->word(),
             'marca_id' => Marca::inRandomOrder()->first()->id,
 
         ];

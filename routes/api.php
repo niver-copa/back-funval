@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\CajaController;
+use App\Http\Controllers\CombustibleController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\VendedorController;
 use App\Http\Controllers\ClienteController;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
@@ -69,6 +70,7 @@ Route::put('/proveedor/delete/{id}', [ProveedorController::class, 'delete']);
 
 Route::prefix('marcas')->group(function () {
     Route::get('/', [MarcaController::class, 'index']);
+    Route::get('/full', [MarcaController::class, 'indexf']);
     Route::get('/{id}', [MarcaController::class, 'show']);
     Route::post('/', [MarcaController::class, 'create']);
     Route::put('/{id}', [MarcaController::class, 'update']);
@@ -107,4 +109,12 @@ Route::prefix('sucursales')->group(function () {
     Route::post('/', [SucursalController::class, 'create']);
     Route::put('/{id}', [SucursalController::class, 'update']);
     Route::delete('/{id}', [SucursalController::class, 'destroy']);
+});
+
+Route::prefix('cajas')->group(function () {
+    Route::get('/', [CajaController::class, 'index']);
+});
+
+Route::prefix('combustibles')->group(function () {
+    Route::get('/', [CombustibleController::class, 'index']);
 });

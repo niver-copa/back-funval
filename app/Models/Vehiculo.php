@@ -18,6 +18,7 @@ class Vehiculo extends Model
         'torque_maximo',
         'ubicacion',
         'cilindros',
+        'matricula',
         'diametro_carrera',
         'cilindraje'=>'required',
         'compresion',
@@ -30,6 +31,8 @@ class Vehiculo extends Model
         'frenos_delanteros',
         'color',
         'anio',
+        'precio',
+        'descripcion',
         'sucursal_id'
     ];
 
