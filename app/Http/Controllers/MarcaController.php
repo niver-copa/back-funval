@@ -41,21 +41,12 @@ class MarcaController extends Controller
 
             $nuevaMarca->save();
 
-            return "El registro se creo correctamente";
-        }
-        catch (QueryException $e) {
-            $errormsj = $e->getMessage();
-        
-            if (strpos($errormsj, 'Duplicate entry') !== false) {
-                preg_match("/Duplicate entry '(.*?)' for key '(.*?)'/", $errormsj, $matches);
-                $duplicateValue = $matches[1] ?? '';
-                $duplicateKey = $matches[2] ?? '';
-        
-                return response()->json(['error' => "No se puede realizar la acción, el valor '$duplicateValue' ya está duplicado en el campo '$duplicateKey'"], 422);
-            }
-            return response()->json(['error' => 'Error en la acción realizada: ' . $errormsj], 500);
+
+            return redirect('http://localhost:5173/marcas');
+
         } catch (Exception $e) {
-            return "Bad Request";
+           return redirect('http://localhost:5173/marcas');
+           
         }
     }
 
