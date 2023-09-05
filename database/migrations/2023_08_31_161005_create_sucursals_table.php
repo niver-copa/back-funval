@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sucursales', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->integer('codigo');
             $table->string('calle');
             $table->string('num_exterior')->nullable();

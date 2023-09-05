@@ -17,7 +17,7 @@ class SucursalFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => fake()->name(),
+            'nombre' => fake()->unique()->name(),
             'codigo' => fake()->unique()->randomNumber(5),
             'calle' => fake()->address(),
             'num_exterior' => fake()->randomNumber(4),

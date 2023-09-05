@@ -98,14 +98,15 @@ class VehiculoController extends Controller
         
         } catch (QueryException $e) {
             $errormsj = $e->getMessage();
-
+        
             if (strpos($errormsj, 'Duplicate entry') !== false) {
-                preg_match("/Duplicate entry '(.*?)' for key/", $errormsj, $matches);
+                preg_match("/Duplicate entry '(.*?)' for key '(.*?)'/", $errormsj, $matches);
                 $duplicateValue = $matches[1] ?? '';
-
-                return response()->json(['error' => "Error, No se puede realizar la accion, datos duplicado $duplicateValue"], 422);
+                $duplicateKey = $matches[2] ?? '';
+        
+                return response()->json(['error' => "No se puede realizar la acción, el valor '$duplicateValue' ya está duplicado en el campo '$duplicateKey'"], 422);
             }
-            return response()->json(['error' => 'Error en la accion realizada: ' . $errormsj], 500);
+            return response()->json(['error' => 'Error en la acción realizada: ' . $errormsj], 500);
         } catch (ModelNotFoundException $e) {
             return response()->json(['error' => 'No se pudo registrar el vehiculo'.$e->getMessage()], 404);
         } catch (Exception $e) {

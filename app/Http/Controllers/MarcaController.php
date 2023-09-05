@@ -12,18 +12,14 @@ class MarcaController extends Controller
 {
     public function index()
     {
-        $marcas = Marca::all();
-        $listaFiltrada = array();
+        $marcas = Marca::where('status', 1)->get();
 
-        foreach ($marcas as $m) {
-
-            $m->modelos;
-            if ($m->estado == true) {
-
-                $listaFiltrada[] = $m;
-            }
-        }
-        return $marcas;
+        $listaFiltrada = $marcas->filter(function ($marca) {
+            $marca->load('modelos');
+            return $marca->modelos->isNotEmpty();
+        })->values();
+       
+        return $listaFiltrada;
     }
 
 
@@ -46,6 +42,18 @@ class MarcaController extends Controller
             $nuevaMarca->save();
 
             return "El registro se creo correctamente";
+        }
+        catch (QueryException $e) {
+            $errormsj = $e->getMessage();
+        
+            if (strpos($errormsj, 'Duplicate entry') !== false) {
+                preg_match("/Duplicate entry '(.*?)' for key '(.*?)'/", $errormsj, $matches);
+                $duplicateValue = $matches[1] ?? '';
+                $duplicateKey = $matches[2] ?? '';
+        
+                return response()->json(['error' => "No se puede realizar la acción, el valor '$duplicateValue' ya está duplicado en el campo '$duplicateKey'"], 422);
+            }
+            return response()->json(['error' => 'Error en la acción realizada: ' . $errormsj], 500);
         } catch (Exception $e) {
             return "Bad Request";
         }

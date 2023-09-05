@@ -34,7 +34,7 @@ return new class extends Migration
             $table->unsignedBigInteger('trasera_suspension_id');
             $table->string('frenos_delanteros');
             $table->string('color');
-            $table->year('anio');
+            $table->integer('anio');
             $table->text('descripcion');
             $table->unsignedBigInteger('sucursal_id');
 
