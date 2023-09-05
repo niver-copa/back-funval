@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CajaController;
+use App\Http\Controllers\CombustibleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarcaController;
@@ -63,4 +65,12 @@ Route::prefix('sucursales')->group(function () {
     Route::post('/', [SucursalController::class, 'create']);
     Route::put('/{id}', [SucursalController::class, 'update']);
     Route::delete('/{id}', [SucursalController::class, 'destroy']);
+});
+
+Route::prefix('cajas')->group(function () {
+    Route::get('/', [CajaController::class, 'index']);
+});
+
+Route::prefix('combustibles')->group(function () {
+    Route::get('/', [CombustibleController::class, 'index']);
 });
